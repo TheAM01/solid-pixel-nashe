@@ -90,3 +90,7 @@ span.horizontal_rule {
     width: 100%;
     border-bottom: 1px solid var(--accent);
 }
+
+span.strikethrough {
+    text-decoration: line-through;
+}

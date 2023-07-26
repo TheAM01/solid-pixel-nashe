@@ -2,7 +2,7 @@
 	{
 		"id":"cocaine",
 		"name":"Cocaine",
-		"price":"Rs 16000",
+		"price":"16000",
 		"thumbnail":"https://arc-anglerfish-arc2-prod-pmn.s3.amazonaws.com/public/XIEHMMOYG5CMBCK7ULQW6U6P6Y.jpg",
 		"url":"/products/cocaine",
 		"category":"CNS stimulant",
@@ -11,7 +11,7 @@
 		],
 		"reviews":[
 			{
-				"author":"Muzil",
+				"author":"Muzil (📛)",
 				"stars":5,
 				"content":"Amazing product man good af 💯💯. Been struggling with anxiety and this shit makes me forget allat."
 			},
@@ -24,13 +24,28 @@
 				"author":"Karim Khan",
 				"stars":5,
 				"content":"bohat baap cheez hai bro mast zabrdast 💯💯💯. bas ik problem hai mehenga bht hai 😢. lekin overall sellar bht coperative hai aor item quality ka hota hai to pesa wasul hojat h"
+			},
+			{
+				"author": "Tony Stark (📛)",
+				"stars": 5,
+				"content": "Oh, this is exhilarating! The ultimate rush, the power coursing through my veins. With this, I can build more Iron Man suits and save the world!"
+			},
+			{
+				"author": "Sherlock Holmes (📛)",
+				"stars": 4,
+				"content": "Fascinating substance! It heightens my senses and opens doors to the mind palace. The world becomes a playground of possibilities, and mysteries unravel before me."
+			},
+			{
+				"author": "Dr. Gregory House (📛)",
+				"stars": 4,
+				"content": "Ah, the white powder of brilliance! This stuff keeps me going even during the toughest medical cases, allowing me to think five steps ahead of everyone else."
 			}
 		]
 	},
 	{
 		"id":"amphetamines",
 		"name":"Amphetamines",
-		"price":"Rs 3200",
+		"price":"3200",
 		"thumbnail":"https://cdn.adf.org.au/media/images/amphetamines-social.2e16d0ba.fill-1200x1200.jpg",
 		"url":"/products/amphetamines",
 		"category":"CNS stimulant",
@@ -39,7 +54,7 @@
 		],
 		"reviews":[
 			{
-				"author":"Drug regulation authority of Pakistan",
+				"author":"Drug regulation authority of Pakistan (📛)",
 				"stars":3,
 				"content":"It is 0.15 pure. I can make better product than that."
 			},
@@ -47,13 +62,28 @@
 				"author":"Charsi",
 				"stars":4,
 				"content":"Very good and cheap."
+			},
+			{
+				"author": "Dean Winchester (📛)",
+				"stars": 4,
+				"content": "Gives me the drive to hunt all night! This stuff keeps me sharp and ready to face any supernatural threat that comes our way."
+			},
+			{
+				"author": "Barry Allen (📛)",
+				"stars": 5,
+				"content": "With these, I'm faster than ever, breaking the barriers of time itself."
+			},
+			{
+				"author": "Rick Sanchez (📛)",
+				"stars": 3,
+				"content": "Oh, these little pills! They're like a one-way ticket to every conceivable dimension, making everything funnier and crazier."
 			}
 		]
 	},
 	{
 		"id":"ecstasy",
 		"name":"Ecstasy",
-		"price":"Rs 200",
+		"price":"200",
 		"thumbnail":"https://mydr.com.au/wp-content/uploads/2019/01/AdobeStock_109861388-scaled-e1618969753558.jpg",
 		"url":"/products/ecstasy",
 		"category":"hallucinogen",
@@ -62,7 +92,7 @@
 		],
 		"reviews":[
 			{
-				"author":"Jason Brody",
+				"author":"Jason Brody (📛)",
 				"stars":5,
 				"content":"Goes HARD!! If ur looking ot party with alcohol and stuff, you goota get these!!!"
 			},
@@ -76,7 +106,7 @@
 	{
 		"id":"hashish",
 		"name":"Hashish",
-		"price":"Rs 1000",
+		"price":"1000",
 		"thumbnail":"https://thehimalayantimes.com/uploads/imported_images/wp-content/uploads/2016/03/Marijuana-packets-confiscated-by-police.jpg",
 		"url":"/products/hashish",
 		"category":"cannabis",
@@ -85,7 +115,7 @@
 		],
 		"reviews":[
 			{
-				"author":"Snoop Dogg",
+				"author":"Snoop Dogg (📛)",
 				"stars":5,
 				"content":"Good product at good rates. Satisfied with the delivery especially cus it came in so cheap. Lookin for cheaper weed, this is the thing you need fo sho."
 			},
@@ -99,7 +129,7 @@
 	{
 		"id":"meth",
 		"name":"Methamphetamine",
-		"price":"Rs 3500",
+		"price":"3500",
 		"thumbnail":"https://www.harmonyrecoverync.com/wp-content/uploads/2021/12/What-Does-Meth-Look-Like.jpg",
 		"url":"/products/meth",
 		"category":"CNS stimulant",
@@ -108,17 +138,17 @@
 		],
 		"reviews":[
 			{
-				"author":"Saim",
+				"author":"Saim (📛)",
 				"stars":5,
 				"content":"Good, reciommended"
 			},
 			{
-				"author":"Tuco Salamanca",
+				"author":"Tuco Salamanca (📛)",
 				"stars":5,
 				"content":"BOOYAH WOW TIGHT TIGHT TIGHT ESE!"
 			},
 			{
-				"author":"Jesse Pinkman",
+				"author":"Jesse Pinkman (📛)",
 				"stars":5,
 				"content":"This shit is the BOMB yo"
 			}
@@ -127,7 +157,7 @@
 	{
 		"id":"heroin",
 		"name":"Heroin",
-		"price":"Rs 1000",
+		"price":"1000",
 		"thumbnail":"https://admin.sunrisehouse.com/wp-content/uploads/2018/05/drug-ring-bust-takes-2500-heroin-packets-a-month-off-nj-streets-400x267.jpg",
 		"url":"/products/heroin",
 		"category":"narcotics",
@@ -145,7 +175,7 @@
 	{
 		"id":"lsd",
 		"name":"LSD (lysergic-acid-diethylamide)",
-		"price":"Rs 6000",
+		"price":"6000",
 		"thumbnail":"https://d2cbg94ubxgsnp.cloudfront.net/Pictures/480xAny/9/1/9/132919_Pink_Elephants_on_Parade_Blotter_LSD_Dumbo.jpg",
 		"url":"/products/lsd",
 		"category":"hallucinogen",
@@ -157,6 +187,174 @@
 				"author":"Gary",
 				"stars":5,
 				"content":"Fuckin hell man this shot is GOOD... i been seeing worlds and trips are f'in good bro keep up the good stock buddy"
+			}
+		]
+	},
+	{
+		"id": "ketamine",
+		"name": "Ketamine",
+		"price": "500",
+		"thumbnail": "//cdn.cnn.com/cnnnext/dam/assets/180704091230-ketamine-vial.jpg",
+		"url": "/products/ketamine",
+		"category": "hallucinogen",
+		"content": [
+			"1 gram of Ketamine"
+		],
+		"reviews": [
+			{
+				"author": "Alice (📛)",
+				"stars": 5,
+				"content": "Fell down the rabbit hole, and it's like the world transformed into a magical wonderland, revealing secrets of the universe. Can't wait to go back and explore again!"
+			},
+			{
+				"author": "Doctor Strange (📛)",
+				"stars": 4,
+				"content": "The astral plane is mind-bending, and this substance is the key to unlock its wonders, bending reality at my fingertips."
+			},
+			{
+				"author": "Morty Smith (📛)",
+				"stars": 3,
+				"content": "Aw geez, this stuff is trippy, like jumping through dimensions with Rick!"
+			}
+		]
+	},
+	{
+		"id": "pcp",
+		"name": "PCP",
+		"price": "1500",
+		"thumbnail": "https://media-cldnry.s-nbcnews.com/image/upload/t_fit-760w,f_auto,q_auto:best/streams/2013/December/131202/2D9814372-131202-sythetic-pot-jsw-306p.jpg",
+		"url": "/products/pcp",
+		"category": "hallucinogen",
+		"content": [
+			"1 pack of PCP angel dust (1 gram)"
+		],
+		"reviews": [
+			{
+				"author": "Soldier Boy (📛)",
+				"stars": 4,
+				"content": "This stuff is intense, like a battlefield of the mind, unleashing a warrior within."
+			},
+			{
+				"author": "Homelander (📛)",
+				"stars": 3,
+				"content": "Feels like I can conquer the world with this power, soaring high above the clouds. It makes me stronger, smarter and better, in my own world."
+			},
+			{
+				"author": "Walter White (📛)",
+				"stars": 2,
+				"content": "This shit you cook, it is shit. Try using more muriatic acid next time."
+			}
+		]
+	},
+	{
+		"id": "nicotine",
+		"name": "Nicotine",
+		"price": "200",
+		"thumbnail": "https://www.nebraskamed.com/sites/default/files/2021-06/nicotinepouches_featuredtile.jpg",
+		"url": "/products/nicotine",
+		"category": "stimulant",
+		"content": [
+			"1 pack of Nicotine pouches (berry falvoured)"
+		],
+		"reviews": [
+			{
+				"author": "Gus Fring (📛)",
+				"stars": 3,
+				"content": "An addicting flavor, like the taste of success."
+			},
+			{
+				"author": "Danny Phantom (📛)",
+				"stars": 4,
+				"content": "Phantom power intensifies! Cant wait to smoke my next ciggy."
+			}
+		]
+	},
+	{
+		"id": "oxycodone",
+		"name": "Oxycodone",
+		"price": "1000",
+		"thumbnail": "https://cdn.adf.org.au/media/images/oxycodone-social.2e16d0ba.fill-1200x1200.jpg",
+		"url": "/products/oxycodone",
+		"category": "opioid",
+		"content": [
+			"1 tablet of Oxycodone"
+		],
+		"reviews": [
+			{
+				"author": "Dean Winchester (📛)",
+				"stars": 4,
+				"content": "Provides temporary relief from the pain, numbing me from the horrors of hunting. This is the way to deal with the darkness."
+			},
+			{
+				"author": "Dr. Gregory House (📛)",
+				"stars": 5,
+				"content": "This, is the real deal. You know i can't do one diagnosis without my oxycodone. Like that one time in that one episode where Dr. Cuddy took my oxycodone away and called me and addict."
+			}
+		]
+	},
+	{
+		"id": "fentanyl",
+		"name": "Fentanyl",
+		"price": "2500",
+		"thumbnail": "https://media.npr.org/assets/img/2022/10/06/rainbow-fentanyl-m30_wide-cbb5120512f61d1484a39ac9b0a2bdaff40ddbd5-s1400-c100.jpg",
+		"url": "/products/fentanyl",
+		"category": "opioid",
+		"content": [
+			"1 patch of Fentanyl"
+		],
+		"reviews": [
+			{
+				"author": "Elektra Natchios (📛)",
+				"stars": 4,
+				"content": "With this, I feel like the deadliest assassin, untouchable and fearless. These pills are amazing."
+			},
+			{
+				"author": "Joker (📛)",
+				"stars": 5,
+				"content": "Ha ha ha! It's like a rollercoaster of laughter and madness. Chaos does sometime need a chemical catalyst."
+			},
+			{
+				"author": "Walter White (📛)",
+				"stars": 3,
+				"content": "The blue is mesmerizing, like my Blue Sky meth."
+			}
+		]
+	},
+	{
+		"id": "tobacco",
+		"name": "Tobacco",
+		"price": "100",
+		"thumbnail": "https://cdn.adf.org.au/media/images/tobacco-02.width-1524.jpg",
+		"url": "/products/tobacco",
+		"category": "stimulant",
+		"content": [
+			"1 pack of Tobacco"
+		],
+		"reviews": [
+			{
+				"author": "John Constantine (📛)",
+				"stars": 4,
+				"content": "Ah, the sweet and bitter taste of tobacco, like a dance with the devil itself. It's been my companion through countless battles, offering solace in the darkest hours. Mates, there's nothing like the soothing puff of tobacco, winding through the night like the smoke of hell. It's a habit I've clung to, a guilty pleasure amidst the chaos I face daily."
+			},
+			{
+				"author": "Don Draper (📛)",
+				"stars": 3,
+				"content": "The smoky haze accompanies me in the boardroom and the boudoir. But beneath the perfect façade, there's a longing for real connections."
+			},
+			{
+				"author": "Jesse Pinkman (📛)",
+				"stars": 4,
+				"content": "Yo, this stuff gives me a break from all the messed up things in life. It's a real escape."
+			},
+			{
+				"author": "Kim Wexler (📛)",
+				"stars": 3,
+				"content": "You know, this smoke brings me a fleeting moment of calm. And i really like it, you know. Its easy to get and cheap."
+			},
+			{
+				"author": "Kid Named Finger",
+				"stars": 3,
+				"content": "Waltuh, gimme a smoke, waltuh. I am not going to rehab with you wlatuh."
 			}
 		]
 	}
