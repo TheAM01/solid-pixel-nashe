@@ -101,3 +101,20 @@ span.horizontal_rule {
 span.strikethrough {
     text-decoration: line-through;
 }
+
+.back_button {
+    background-color: var(--primary);
+    border: 2px solid var(--accent);
+    padding: 5px 10px;
+    font-size: 15px;
+    width: max-content;
+    border-radius: 20px;
+    transition: 0.1s;
+}
+
+.back_button:hover {
+    cursor: pointer;
+    background-color: var(--secondary);
+    border: 2px solid var(--secondary);
+    box-shadow: var(--std-shadow);
+}
