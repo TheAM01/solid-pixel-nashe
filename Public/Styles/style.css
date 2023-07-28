@@ -49,11 +49,18 @@ body div {
     justify-content: space-around;
 }
 
-.left {
+.left, .left a {
     font-family: 'Oswald', sans-serif;
     margin: auto 0 auto 0;
     font-size: 20px;
     color: white;
+    user-select: none;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.left a:hover {
+    color: var(--accent);
 }
 
 .right {

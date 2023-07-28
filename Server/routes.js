@@ -4,6 +4,10 @@ function createRoutes(app, dir) {
         res.sendFile(dir + "/Public/index.html")
     });
 
+    app.get('/products', (req, res) => {
+        res.sendFile(dir + "/Public/index.html")
+    })
+
     app.get('/products/:product', (req, res) => {
         res.sendFile(dir + "/Public/Dynamic/product.html")
     });

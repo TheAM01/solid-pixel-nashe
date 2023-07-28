@@ -5,7 +5,12 @@
     text-decoration: none;
 }
 
-
+.logimg {
+    height: 1.5em;
+    justify-self: center;
+    align-self: center;
+    user-select: none;
+}
 
 .ad_parent::before {
     content: "ad";
@@ -164,12 +169,28 @@ ctrt: categories_table_row_top
     box-shadow: var(--std-shadow);
 }
 
-.prdt_parent {
-    width: 100%;
-    background-color: var(--primary);
-    padding: 20px;
-    flex-direction: column;
+/* .prdt_category a {
+    text-decoration: none;
+    color: var(--accent);
+    margin-left: 0.3em;
 }
+
+.prdt_category {
+    margin-bottom: 20px;
+    border: 1px solid var(--secondary);
+    width: 100%;
+    padding: 20px;
+}
+
+.prdt_gallery_link {
+    text-decoration: none;
+    padding: 20px;
+    border: 1px solid var(--secondary);
+    width: 100%;
+    color: var(--accent);
+} */
+
+/*  */
 
 .prdt_thumbnail_parent {
     align-self: center;
@@ -200,41 +221,52 @@ ctrt: categories_table_row_top
     color: var(--accent);
 }
 
+.prdt_field {
+    border: 1px solid var(--secondary);
+    padding: 20px;
+    color: var(--font);
+    margin: 10px 0 10px 0;
+}
+
+.prdt_description {
+    flex-wrap: wrap;
+    font-size: 20px;
+}
+
 .prdt_gallery {
-    margin-bottom: 20px;
+    transition: 0.1s;
+    text-decoration: none;
+}
+
+.prdt_gallery:hover {
+    background-color: var(--secondary);
 }
 
 .prdt_category a {
     text-decoration: none;
     color: var(--accent);
     margin-left: 0.3em;
+    transition: 0.1s;
+    pointer-events: auto;
+}
+
+.prdt_category:hover {
+    background-color: var(--secondary);
 }
 
 .prdt_category {
-
-    margin-bottom: 20px;
-    border: 1px solid var(--secondary);
-    width: 100%;
-    padding: 20px;
-
+    pointer-events: none;
 }
 
-.prdt_gallery_link {
-    text-decoration: none;
-    padding: 20px;
-    border: 1px solid var(--secondary);
+.product_details_parent {
     width: 100%;
-    color: var(--accent);
-}
-
-.prdt_content {
-    border: 1px solid var(--secondary);
+    background-color: var(--primary);
     padding: 20px;
-    color: var(--font);
-    margin-bottom: 20px;
+    flex-direction: column;
 }
 
 .prdt_reviews_parent {
+    margin: 10px 0 10px 0;
     flex-direction: column;
     border: 1px solid var(--secondary);
 }

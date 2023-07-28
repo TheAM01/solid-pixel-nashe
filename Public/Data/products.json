@@ -9,6 +9,7 @@
 		"content":[
 			"1 gram of cocaine"
 		],
+		"description":"Experience the exhilarating rush with our premium-quality cocaine. Derived from the finest sources, our product offers unparalleled purity and potency. Elevate your senses and embrace a world of limitless energy.",
 		"reviews":[
 			{
 				"author":"Muzil (📛)",
@@ -52,6 +53,7 @@
 		"content":[
 			"1 gram of Amphetamines"
 		],
+		"description":"Unlock your untapped potential with our premium-grade amphetamines. Engineered to perfection, our product will supercharge your focus and drive, pushing you beyond your limits. Embrace the boundless energy and conquer your goals.",
 		"reviews":[
 			{
 				"author":"Drug regulation authority of Pakistan (📛)",
@@ -76,7 +78,7 @@
 			{
 				"author": "Rick Sanchez (📛)",
 				"stars": 3,
-				"content": "Oh, these little pills! They're like a one-way ticket to every conceivable dimension, making everything funnier and crazier."
+				"content": "Oh, these little crystals! They're like a one-way ticket to every conceivable dimension, making everything funnier and crazier."
 			}
 		]
 	},
@@ -90,6 +92,7 @@
 		"content":[
 			"1 5 gram pill of ecstasy/molly/MDMA (3,4-methylenedioxy-methamphetamine)"
 		],
+		"description":"Embark on an otherworldly journey with our enchanting ecstasy. Designed to elevate your party experience, our product will fill your night with euphoria and a sense of profound connection. Dance to the rhythm of life with boundless energy and joy.",
 		"reviews":[
 			{
 				"author":"Jason Brody (📛)",
@@ -113,6 +116,7 @@
 		"content":[
 			"1 packet of 5 grams of hashish"
 		],
+		"description": "Indulge in the world of relaxation with our premium Hashish. This aromatic resin carries you away to euphoric realms. Each puff tantalizes your senses, inviting tranquility and creativity. Unleash your inner wanderer with our artisanal Hashish, crafted from the most exquisite cannabis strains. Dive into a haze of euphoria and creativity, as this aromatic resin weaves a psychedelic tapestry of bliss. Each puff carries you on a soul-stirring journey, unlocking cosmic mysteries and inspiring poetic musings. Embrace a mindful balance, cherishing connections and savoring each high in harmony. So, let Hashish be your psychedelic guide to an enlightened, groovy existence.",
 		"reviews":[
 			{
 				"author":"Snoop Dogg (📛)",
@@ -136,6 +140,7 @@
 		"content":[
 			"2 gram of meth"
 		],
+		"description": "Unleash the power within with our high-grade Methamphetamine. Crafted with precision, our product delivers an electrifying surge of energy and focus. Stay ahead of the game and achieve unparalleled productivity.",
 		"reviews":[
 			{
 				"author":"Saim (📛)",
@@ -164,6 +169,7 @@
 		"content":[
 			"2 grams of heroin"
 		],
+		"description": "Check out our primo Heroin! This stuffs top-notch, pure, and guarantees a wild sense of euphoria and relaxation. You won't feel a thing, as it takes away all the pain, both in your body and mind. It's like livin in a trippy dream world where time just slows down, and your worries vanish.",
 		"reviews":[
 			{
 				"author":"Abdul C.",
@@ -182,6 +188,7 @@
 		"content":[
 			"1 blotter tablet of lsd"
 		],
+		"description": "Yo, get ready to take a wild ride with our top-notch LSD blotter tablets! This mind-bending stuff will blow your mind and take you to a whole new level of trippy vibes. You'll be seeing colors and shapes like you've never seen before. It's like entering a whole other universe, bro. Our product is the real deal, sourced from the best, so you know you're in for a wicked time.",
 		"reviews":[
 			{
 				"author":"Gary",
@@ -198,8 +205,9 @@
 		"url": "/products/ketamine",
 		"category": "hallucinogen",
 		"content": [
-			"1 gram of Ketamine"
+			"1 vial of Ketamine (1 gram)"
 		],
+		"description": "Yo, brace yourself for the ultimate mind trip with our top-notch Ketamine! This stuff is straight-up magic, man! Take a dose and you'll be tumbling down the rabbit hole, exploring a whole new magical wonderland. It's like unlocking secrets of the universe, bro! You'll be bending reality at your fingertips and entering the astral plane like Doctor Strange. It's like hopping through dimensions with Rick, Morty-style.Our Ketamine is made by the finest cooks in the game, man! These wizards of chemistry craft it with the utmost care and precision, using only the best ingredients, bro! It's like a top-secret recipe that guarantees pure, potent, and mind-bending trips, like nothing you've experienced before! This stuff is the real deal, the gold standard of Ketamine, tested and trusted to take you on a journey like never before!",
 		"reviews": [
 			{
 				"author": "Alice (📛)",
@@ -228,6 +236,7 @@
 		"content": [
 			"1 pack of PCP angel dust (1 gram)"
 		],
+		"description": "Chexk out our PCP angle dust. This mind blowin stuff is gonna take you on a journy like no other, ya kno? It's carefully cooked up by the best hands in the biz, and you can be sure it's pure and potent. Feel like a worrior when your under it's spell, and soar high in the clowds, conquerin the world in your own way. Not evryones into it, though, some folks say it's not their cup of tea. But hey, that's cool, evereyone's got their own thing, right? So give it a try, and let the adventure begin. Tell us about it.\n\nEdit: YOO we got appreciatd by homelander  lets goooo",
 		"reviews": [
 			{
 				"author": "Soldier Boy (📛)",
@@ -248,14 +257,15 @@
 	},
 	{
 		"id": "nicotine",
-		"name": "Nicotine",
+		"name": "Nicotine pouches",
 		"price": "200",
 		"thumbnail": "https://www.nebraskamed.com/sites/default/files/2021-06/nicotinepouches_featuredtile.jpg",
 		"url": "/products/nicotine",
 		"category": "stimulant",
 		"content": [
-			"1 pack of Nicotine pouches (berry falvoured)"
+			"1 pack of Nicotine pouches (berry flavoured)"
 		],
+		"description": "Yo, check out our Nicotine Pouches, man! These little bad boys are packin' a punch of that sweet berry flavor, bringin' you that instant buzz you crave. Pop one in and feel the rush, no smoke, no fuss! It's all about that discreet and easy vibe, keepin' you on the move without the hassle. Take a break from the grind and enjoy the moment. We got your back, keepin' it chill and mellow with these pouches. So grab a pack, and get ready for a smooth ride, my friend!",
 		"reviews": [
 			{
 				"author": "Gus Fring (📛)",
@@ -265,7 +275,7 @@
 			{
 				"author": "Danny Phantom (📛)",
 				"stars": 4,
-				"content": "Phantom power intensifies! Cant wait to smoke my next ciggy."
+				"content": "Phantom power intensifies! Cant wait to enjoy these bad boys again."
 			}
 		]
 	},
@@ -279,6 +289,7 @@
 		"content": [
 			"1 tablet of Oxycodone"
 		],
+		"description": "You want some bomb ass oxycodone? Look no further than me, I got the real deal. This stuff is pure, unadulterated, and straight to the point. It is the purest stuff you'll find, and you can trust the source. The guys who made this are professionals. They use only the finest equipment to make sure it's pure and safe for consumption. Just one tablet is all you need to be feeling good. No headaches, no nausea, just pure bliss. Get yourself some now, and you won't regret it. Trust me, I'm on it right now as we speak. Peace out.",
 		"reviews": [
 			{
 				"author": "Dean Winchester (📛)",
@@ -288,7 +299,7 @@
 			{
 				"author": "Dr. Gregory House (📛)",
 				"stars": 5,
-				"content": "This, is the real deal. You know i can't do one diagnosis without my oxycodone. Like that one time in that one episode where Dr. Cuddy took my oxycodone away and called me and addict."
+				"content": "This, this is the real deal. You know i can't do one diagnosis without my oxycodone. Like that one time in that one episode where Dr. Cuddy took my oxycodone away and called me and addict."
 			}
 		]
 	},
@@ -302,6 +313,7 @@
 		"content": [
 			"1 patch of Fentanyl"
 		],
+		"description": "Attention, all opioid enthusiasts. You're in for a treat with this fentanyl. It's top notch, straight from the lab. This stuff is pure, potent, and reliable. With just a tiny speck, you'll be feeling like a million bucks. Its the bomb. Get some now and you'll never settle for anything else. Peace out, and stay safe.",
 		"reviews": [
 			{
 				"author": "Elektra Natchios (📛)",
@@ -330,6 +342,7 @@
 		"content": [
 			"1 pack of Tobacco"
 		],
+		"description": "Ready to take your cigs to the next level? Look no further than these tobacco fillings. They give your cigarettes a sweet and delicious flavor, plus they give off extra smoke. Just imagine how cool you'll look blowing huge plumes of smooth smoke. Try these today and take your smoking experience to the next level.",
 		"reviews": [
 			{
 				"author": "John Constantine (📛)",

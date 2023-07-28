@@ -67,7 +67,7 @@ function productPage(socket) {
 
         console.log(data)
 
-        const parent = element("div", "product_details_parent prdt_parent");
+        const parent = element("div", "product_details_parent");
 
         const thumbnailParent = element("div", "prdt_thumbnail_parent");
 
@@ -79,23 +79,30 @@ function productPage(socket) {
         const price = element("div", "prdt_price");
         price.innerText = `Rs ${data.price}`;
 
-        const gallery = element("a", "prdt_gallery_link prdt_gallery", {"href": `/gallery/${data.id}`});
+        const description = element("div", "prdt_description prdt_field");
+        description.innerText = data.description;
+
+        const gallery = element("a", "prdt_gallery prdt_field", {"href": `/gallery/${data.id}`});
         gallery.innerText = `Visit ${data.name} gallery ↗`
 
-        const category = element("a", "prdt_category");
+        const category = element("a", "prdt_category prdt_field");
         const categoryCategory = element("a", "prdt_category_link", {"href": `/category/${data.category.replaceAll(" ", "-")}`})
         categoryCategory.innerText = `${data.category} ↗`;
 
         category.append("Category:")
         category.appendChild(categoryCategory)
-        
 
-        const content = element("div", "prdt_content");
+        const content = element("div", "prdt_content prdt_field");
         content.innerText = `Content: ${data.content.join(", ")}`
 
         const reviewsParent = element("div", "prdt_reviews_parent");
 
+        const reviewHead = element("span", "heading");
+        reviewHead.innerText = "Reviews: "
+        reviewHead.style.margin = "10px 0 10px 0"
+
         const reviews = []
+
 
         data.reviews.forEach(r => {
 
@@ -139,9 +146,11 @@ function productPage(socket) {
             thumbnailParent,
             title,
             price,
+            description,
             gallery,
             category,
             content,
+            reviewHead,
             reviewsParent
         ])
 
