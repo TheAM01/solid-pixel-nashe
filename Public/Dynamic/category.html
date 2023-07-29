@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="https://images.vexels.com/media/users/3/217793/isolated/preview/0956022a968a707c607256b3131d1f7f-abundant-smoke-icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/style-minor.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/flickity/1.0.0/flickity.css">
+    <title>Saste Nashe - Solid Pixel</title>
+</head>
+<body id="body">
+
+    <div class="header_1">
+        <a href="/app" class="header_link">Save more on app</a>
+        <a href="/affiliate" class="header_link">Solid Pixel affiliate</a>
+        <a href="/sell" class="header_link">Become a seller</a>
+        <a href="/customer-care" class="header_link">Customer care</a>
+        <a href="/login" class="header_link">login</a>
+        <a href="/signup" class="header_link">signup</a>
+    </div>
+
+    <div class="navigation">
+        <div class="left">
+            <img src="https://images.vexels.com/media/users/3/217793/isolated/preview/0956022a968a707c607256b3131d1f7f-abundant-smoke-icon.png" alt="ico" class="logimg">
+            <a href="/">SasteNashe</a>
+        </div>
+        <div class="right">
+            <a href="/products" class="nav_link">Products</a>
+            <a href="/category" class="nav_link">Category</a>
+            <a href="/gallery" class="nav_link">Gallery</a>
+            <a href="/recently-sold" class="nav_link">Recently sold</a>
+            <a href="/cart" class="nav_link">Cart</a>
+        </div>
+    </div>
+
+    <div class="search_bar_parent">
+        <input type="text" name="search" id="search" class="search_bar" placeholder="Search.."><button type="submit" class="search_submit">🔍</button>
+    </div>
+
+    <a href="/" class="ad_parent">
+        <img src="//i.imgur.com/j40cieL.png" alt="" class="ad_img">
+    </a>
+
+    <div class="main">
+
+        <span class="heading center" id="cat_head"></span>
+        <span class="horizontal_rule"></span>
+
+        <div id="category"></div>
+    
+
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/script.js"></script>
+    <script>
+        const socket = io();
+        getCategory(socket);
+    </script>
+
+</body>
+</html>

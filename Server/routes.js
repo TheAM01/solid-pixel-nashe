@@ -12,6 +12,14 @@ function createRoutes(app, dir) {
         res.sendFile(dir + "/Public/Dynamic/product.html")
     });
 
+    app.get('/category', (req, res) => {
+        res.sendFile(dir + "/Public/Dynamic/categories.html");
+    });
+
+    app.get('/category/:category', (req, res) => {
+        res.sendFile(dir + "/Public/Dynamic/category.html");
+    })
+
     app.get('/style.css', (req, res) => {
         res.sendFile(dir + "/Public/Styles/style.css")
     })

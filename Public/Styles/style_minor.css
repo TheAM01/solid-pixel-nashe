@@ -344,3 +344,27 @@ prdt: product_details
     align-content: center;
     align-items: center;
 }
+
+div#categories, div#category {
+    flex-direction: column;
+}
+
+.ctls_link:nth-child(1) {
+    margin-top: 50px;
+    border-top: 2px solid var(--accent);
+}
+
+.ctls_link {
+    padding: 20px;
+    width: 100%;
+    text-decoration: none;
+    text-transform: capitalize;
+    color: var(--font);
+    font-size: 20px;
+    border: 2px solid var(--accent);
+    border-top: none;
+}
+
+.ctls_link:hover {
+    background-color: var(--primary);
+}

@@ -45,7 +45,7 @@ function homeProducts(socket) {
 
         categories.forEach(c => {
 
-            const categoryParent = element('a', 'category_table_element', {"href": `/category/${c}`});
+            const categoryParent = element('a', 'category_table_element', {"href": `/category/${c.replaceAll(" ", "-")}`});
             categoryParent.innerText = c;
 
             document.getElementById("ctrt").appendChild(categoryParent);
@@ -216,6 +216,40 @@ function addToCart(item) {
   
     return setCookie("cart", JSON.stringify(cart), 30)
   
+}
+
+function getCategories(socket) {
+
+    socket.emit("get_categories");
+
+    socket.on("get_categories", (data) => {
+        console.log(data);
+
+        data.forEach(category => {
+            const link = element("a", "ctls_link", {"href": `/category/${category.replaceAll(" ", "-")}`});
+            link.innerText = category;
+            document.getElementById("categories").appendChild(link)
+        })
+    });
+
+}
+
+function getCategory(socket) {
+    const urx = new URL(window.location.href);
+    const pr = (urx.pathname.split('/')[2]);
+    console.log(pr);
+
+    socket.emit("get_category", pr.toLowerCase().replaceAll("-", " "));
+
+    socket.on("get_category", (data) => {
+        console.log(data);
+
+        data.forEach(category => {
+            const link = element("a", "ctls_link", {"href": `/products/${category.id}`});
+            link.innerText = category.name;
+            document.getElementById("category").appendChild(link)
+        });
+    });
 }
   
 function successPopup(message) {
