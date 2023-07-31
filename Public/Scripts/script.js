@@ -266,7 +266,13 @@ function buildCart() {
 
     cart = JSON.parse(cart);
 
-    if (!cart) console.log("empty")
+    if (cart.length === 0) {
+        const image = element("img", "empty_cart_image", {"src": "https://cdni.iconscout.com/illustration/free/thumb/free-empty-cart-4085814-3385483.png"});
+        let w = element("span", "heading center");
+        w.innerText = "Your cart is empty!"
+        document.getElementById("cart").append(image);
+        return document.getElementById("cart").append(w)
+    }
 
     total = 0;
     cart.forEach(i => {
@@ -367,11 +373,9 @@ function removeFromCart(id) {
       cart.splice(index, 1); // 2nd parameter means remove one item only
     }
   
-    console.log(cart);
-  
     successPopup(`Removed ${id} from cart.`)
   
-    setCookie("cart", JSON.stringify(cart), (1/86400));
+    setCookie("cart", JSON.stringify(cart), (30));
     setTimeout(() => {window.location.reload()}, 5000)
 }
   
