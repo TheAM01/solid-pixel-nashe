@@ -345,7 +345,7 @@ prdt: product_details
     align-items: center;
 }
 
-div#categories, div#category {
+div#categories, div#category, div#cart {
     flex-direction: column;
 }
 
@@ -367,4 +367,66 @@ div#categories, div#category {
 
 .ctls_link:hover {
     background-color: var(--primary);
+}
+
+.cart_item_parent {
+    border: 2px solid var(--accent);
+    background-color: var(--secondary);
+    padding: 20px;
+    width: auto;
+    flex-direction: row;
+    margin: 20px 0 20px 0;
+}
+
+.crit_thumbnail {
+    width: 200px;
+    object-fit: contain;
+}
+
+.crit_thumbnail_parent {
+    aspect-ratio: 1/1;
+    justify-content: center;
+    align-content: center;
+    background-color: black;
+    margin-right: 10px;
+}
+
+.crit_right {
+    flex-direction: column;
+    padding: 15px;
+    width: 100%;
+}
+
+.crit_cell {
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+.crit_title {
+    font-size: 25px;
+}
+
+.crit_quantity {
+    flex-grow: 1;
+}
+
+.crit_sum {
+    width: auto;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.remove_from_cart {
+    border: 2px solid var(--accent);
+    background-color: var(--secondary);
+    padding: 5px;
+    font-size: 15px;
+    transition: 0.1s;
+}
+.remove_from_cart:hover {
+    border-radius: 10px;
+    box-shadow: var(--std-shadow);
+    background-color: var(--accent);
+    color: white;
+    cursor: pointer;
 }

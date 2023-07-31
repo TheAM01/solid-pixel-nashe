@@ -1,0 +1,39 @@
+{
+  "id": "amphetamines",
+  "name": "Amphetamines",
+  "price": "3200",
+  "thumbnail": "https://cdn.adf.org.au/media/images/amphetamines-social.2e16d0ba.fill-1200x1200.jpg",
+  "url": "/products/amphetamines",
+  "category": "CNS stimulant",
+  "content": [
+    "1 gram of Amphetamines"
+  ],
+  "description": "Unlock your untapped potential with our premium-grade amphetamines. Engineered to perfection, our product will supercharge your focus and drive, pushing you beyond your limits. Embrace the boundless energy and conquer your goals.",
+  "reviews": [
+    {
+      "author": "Drug regulation authority of Pakistan (📛)",
+      "stars": 3,
+      "content": "It is 0.15 pure. I can make better product than that."
+    },
+    {
+      "author": "Charsi",
+      "stars": 4,
+      "content": "Very good and cheap."
+    },
+    {
+      "author": "Dean Winchester (📛)",
+      "stars": 4,
+      "content": "Gives me the drive to hunt all night! This stuff keeps me sharp and ready to face any supernatural threat that comes our way."
+    },
+    {
+      "author": "Barry Allen (📛)",
+      "stars": 5,
+      "content": "With these, I'm faster than ever, breaking the barriers of time itself."
+    },
+    {
+      "author": "Rick Sanchez (📛)",
+      "stars": 3,
+      "content": "Oh, these little crystals! They're like a one-way ticket to every conceivable dimension, making everything funnier and crazier."
+    }
+  ]
+}

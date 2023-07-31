@@ -28,5 +28,18 @@ createRoutes(app, dir);
 
 server.listen(port, () => {
     console.clear();
-    console.log(`Listening on port: ${port}`);
+    console.log(`Listening on port:\x1b[33m ${port}\x1b[0m`);
+
+    return;
+    
+    const location = dir + "/Public/Data";
+    const directory = fs.readdirSync(location);
+
+    const productsRaw = fs.readFileSync(location + "/products.json");
+    const products = JSON.parse(productsRaw);
+
+    products.forEach(p => {
+        fs.writeFileSync(location + `/Products/${p.id}.json`, JSON.stringify(p, null, 2))
+    });
+
 });

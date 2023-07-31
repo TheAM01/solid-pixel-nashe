@@ -4,6 +4,10 @@ function createRoutes(app, dir) {
         res.sendFile(dir + "/Public/index.html")
     });
 
+    app.get('/disclaimer', (req, res) => {
+        res.sendFile(dir + "/Public/Static/disclaimer.html")
+    });
+
     app.get('/products', (req, res) => {
         res.sendFile(dir + "/Public/index.html")
     })
@@ -18,6 +22,10 @@ function createRoutes(app, dir) {
 
     app.get('/category/:category', (req, res) => {
         res.sendFile(dir + "/Public/Dynamic/category.html");
+    });
+
+    app.get('/cart', (req, res) => {
+        res.sendFile(dir + "/Public/Dynamic/cart.html")
     })
 
     app.get('/style.css', (req, res) => {

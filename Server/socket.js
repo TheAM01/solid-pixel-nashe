@@ -2,8 +2,17 @@ import fs from "fs";
 
 
 function socketHandler(socket, io, dir) {
-    const json = fs.readFileSync(`${dir}/Public/Data/products.json`, {encoding: 'utf8'});
-    const products = JSON.parse(json);
+
+    // directory and products declaration
+
+    const directory = fs.readdirSync(`${dir}/Public/Data/Products`);
+    const productsRaw = [];
+    directory.forEach(pr => {
+        return productsRaw.push(JSON.parse(fs.readFileSync(`${dir}/Public/Data/Products/${pr}`)));
+    });
+    const products = productsRaw.sort(sorter);
+
+    // socket functions below
 
     socket.on("home_products", (data) => {
         io.to(socket.id).emit("home_products" ,products);
@@ -27,11 +36,15 @@ function socketHandler(socket, io, dir) {
     socket.on("get_category", (data) => {
         let matches = [];
         products.forEach(p => {
-            console.log([p.category.toLowerCase(), data])
+            console.log([p.category.toLowerCase(), data]);
             if (p.category.toLowerCase() === data) matches.push(p);
         });
-        io.to(socket.id).emit("get_category", matches)
+        io.to(socket.id).emit("get_category", matches);
     });
+}
+
+function sorter(a, b) {
+    return b.reviews.length - a.reviews.length
 }
 
 export default socketHandler

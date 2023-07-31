@@ -2,12 +2,12 @@
 	{
 		"id":"cocaine",
 		"name":"Cocaine",
-		"price":"16000",
+		"price":"1600",
 		"thumbnail":"https://arc-anglerfish-arc2-prod-pmn.s3.amazonaws.com/public/XIEHMMOYG5CMBCK7ULQW6U6P6Y.jpg",
 		"url":"/products/cocaine",
 		"category":"CNS stimulant",
 		"content":[
-			"1 gram of cocaine"
+			"0.1 gram of cocaine"
 		],
 		"description":"Experience the exhilarating rush with our premium-quality cocaine. Derived from the finest sources, our product offers unparalleled purity and potency. Elevate your senses and embrace a world of limitless energy.",
 		"reviews":[
@@ -40,6 +40,11 @@
 				"author": "Dr. Gregory House (📛)",
 				"stars": 4,
 				"content": "Ah, the white powder of brilliance! This stuff keeps me going even during the toughest medical cases, allowing me to think five steps ahead of everyone else."
+			},
+			{
+				"author": "Charsi",
+				"stars": 4,
+				"content": "price boaht mehangi hai sir kam karedn"
 			}
 		]
 	},

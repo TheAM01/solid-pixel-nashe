@@ -39,17 +39,12 @@
         <input type="text" name="search" id="search" class="search_bar" placeholder="Search.."><button type="submit" class="search_submit">🔍</button>
     </div>
 
-    <a href="/" class="ad_parent">
-        <img src="//i.imgur.com/j40cieL.png" alt="" class="ad_img">
-    </a>
-
     <div class="main">
 
-        <span class="heading center" id="cat_head"></span>
+        <span class="heading center">🛒 Your cart:</span>
         <span class="horizontal_rule"></span>
 
-        <div id="category"></div>
-    
+        <div id="cart"></div>
 
     </div>
 
@@ -57,7 +52,7 @@
     <script src="/script.js"></script>
     <script>
         const socket = io();
-        getCategory(socket);
+        buildCart(socket);
     </script>
 
 </body>

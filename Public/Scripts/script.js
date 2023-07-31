@@ -22,7 +22,7 @@ function homeProducts(socket) {
             const price = element('div', 'hmpr_price');
 
             const exPrice = element('span', 'strikethrough');
-            exPrice.innerText = `Rs ${round(product.price, 500)}`;
+            exPrice.innerText = `Rs ${round((parseInt(product.price)+300), 500)}`;
 
             price.appendChild(exPrice);
             price.append(`Rs ${product.price}`)
@@ -251,6 +251,72 @@ function getCategory(socket) {
         });
     });
 }
+
+function buildCart() {
+    let cart = getCookie("cart");
+    let items, total;
+
+    if (!cart) {
+        const image = element("img", "empty_cart_image", {"src": "https://cdni.iconscout.com/illustration/free/thumb/free-empty-cart-4085814-3385483.png"});
+        let w = element("span", "heading center");
+        w.innerText = "Your cart is empty!"
+        document.getElementById("cart").append(image);
+        return document.getElementById("cart").append(w)
+    }
+
+    cart = JSON.parse(cart);
+
+    if (!cart) console.log("empty")
+
+    total = 0;
+    cart.forEach(i => {
+        total += i.sum;
+    });
+
+    socket.emit("home_products");
+    socket.on("home_products", (data) => {
+
+        console.log(data);
+        cart.forEach(i => {
+
+            const matchedProduct = data.find(k => k.id === i.id);
+
+            const parent = element("div", "cart_item_parent");
+    
+            const thumbnailParent = element("div", "crit_thumbnail_parent");
+    
+            const thumbnail = element("img", "crit_thumbnail", {"src": matchedProduct.thumbnail});
+    
+            const rightWrapper = element("div", "crit_right");
+    
+            const title = element("div", "crit_title crit_cell");
+            title.innerText = matchedProduct.name;
+    
+            const price = element("div", "crit_price crit_cell");
+            price.innerText = `Price: ${i.price}`;
+    
+            const quantity = element("div", "crit_quantity crit_cell");
+            quantity.innerText = `Quantity: ${i.quantity}`;
+    
+            const sum = element("div", "crit_sum");
+    
+            const remove = element("button", "remove_from_cart", {"onclick": `removeFromCart('${i.id}')`});
+            remove.innerText = "Remove from cart"
+    
+            sum.append(remove);
+            sum.append(`Total: Rs: ${i.sum}`);
+    
+            appendChildren(rightWrapper, [title, price, quantity, sum]);
+            appendChildren(thumbnailParent, [thumbnail]);
+            appendChildren(parent, [thumbnailParent, rightWrapper]);
+            appendChildren(document.getElementById("cart"), [parent])
+        })
+
+    });
+
+    
+
+}
   
 function successPopup(message) {
 
@@ -305,7 +371,7 @@ function removeFromCart(id) {
   
     successPopup(`Removed ${id} from cart.`)
   
-    setCookie("cart", JSON.stringify(cart), 30);
+    setCookie("cart", JSON.stringify(cart), (1/86400));
     setTimeout(() => {window.location.reload()}, 5000)
 }
   
