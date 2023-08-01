@@ -42,6 +42,12 @@
     flex-direction: column;
 }
 
+.main100 {
+    width: auto;
+    margin: 50px 20px 50px 10px;
+    flex-direction: column;
+}
+
 .carousel {
     width: 100%;
     background-color: var(--primary);
@@ -110,13 +116,13 @@ hmpr: home_product
 .hmpr_thumbnail_parent {
     aspect-ratio: 1/1;
     width: auto;
+    /* height: auto; */
     max-width: 100%;
-    height: auto;
     background-color: black;
     justify-content: center;
     align-items: center;
     border: 1px solid var(--primary);
-
+    overflow: hidden;
     margin-bottom: 15px;
 }
 
@@ -429,4 +435,86 @@ div#categories, div#category, div#cart {
     background-color: var(--accent);
     color: white;
     cursor: pointer;
+}
+
+.checkout_button {
+    width: max-content;
+    align-self: flex-end;
+    padding: 10px;
+    font-size: 20px;
+    background-color: none;
+    border: 2px solid var(--accent);
+    margin-bottom: 200px;
+}
+
+.checkout_button:hover {
+    background-color: var(--accent);
+    box-shadow: var(--std-shadow);
+    cursor: pointer;
+    color: white;
+}
+
+.cart_total {
+    width: auto;
+    margin-bottom: 20px;
+    justify-content: end;
+    padding: 10px;
+    font-size: 20px;
+    border: 2px solid var(--accent);
+}
+
+.sell_form {
+    border: 2px solid var(--accent);
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+    padding: 5px;
+}
+
+.sf_input {
+    display: flex;
+    margin: 10px 0 10px 0;
+    padding: 10px;
+    font-size: 20px;
+    border: 2px solid var(--accent);
+}
+
+#product_description {
+    height: 200px;
+    white-space: pre-wrap;
+    justify-content: start;
+    align-content: start;
+}
+
+.sell_product_preview {
+    background-color: var(--primary);
+    padding: 20px;
+    flex-direction: column;
+    width: 45%;
+    border: 2px solid var(--accent);
+}
+
+.side_by_side {
+    flex-direction: row;
+    width: auto;
+    /* background-color: red; */
+    justify-content: space-evenly;
+}
+
+.sfpr_submit {
+    width: max-content;
+    padding: 10px;
+    align-self: center;
+    border: 2px solid var(--accent);
+    background-color: none;
+    font-size: 18px;
+    transition: 0.1s;
+}
+
+.sfpr_submit:hover {
+    box-shadow: var(--std-shadow);
+    cursor: pointer;
+    background-color: var(--primary);
+    border: 2px solid var(--primary);
+    color: var(--tertiary);
 }

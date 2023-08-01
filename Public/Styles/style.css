@@ -97,13 +97,20 @@ span.emphasis {
 }
 
 span.horizontal_rule {
-    margin: 10px 0 10px 0;
+    margin: 10px 0 50px 0;
     width: 100%;
     border-bottom: 1px solid var(--accent);
 }
 
 span.strikethrough {
     text-decoration: line-through;
+}
+
+span.error_message {
+    border: 2px solid red;
+    background-color: #ff5555;
+    padding: 10px;
+    justify-content: center;
 }
 
 .back_button {

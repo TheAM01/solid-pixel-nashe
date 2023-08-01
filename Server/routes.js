@@ -1,3 +1,5 @@
+import sell from "./Functions/sell.js";
+
 function createRoutes(app, dir) {
 
     app.get('/', (req, res) => {
@@ -26,6 +28,10 @@ function createRoutes(app, dir) {
 
     app.get('/cart', (req, res) => {
         res.sendFile(dir + "/Public/Dynamic/cart.html")
+    });
+
+    app.get('/sell', (req, res) => {
+        res.sendFile(dir + "/Public/Dynamic/sell.html")
     })
 
     app.get('/style.css', (req, res) => {
@@ -38,7 +44,11 @@ function createRoutes(app, dir) {
 
     app.get('/script.js', (req, res) => {
         res.sendFile(dir + "/Public/Scripts/script.js")
-    })
+    });
+
+    app.post('/sell', (req, res) => {
+        sell(req, res, dir)
+    });
 
 }
 

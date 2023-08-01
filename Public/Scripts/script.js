@@ -253,6 +253,7 @@ function getCategory(socket) {
 }
 
 function buildCart() {
+
     let cart = getCookie("cart");
     let items, total;
 
@@ -271,7 +272,7 @@ function buildCart() {
         let w = element("span", "heading center");
         w.innerText = "Your cart is empty!"
         document.getElementById("cart").append(image);
-        return document.getElementById("cart").append(w)
+        return document.getElementById("cart").append(w);
     }
 
     total = 0;
@@ -315,14 +316,80 @@ function buildCart() {
             appendChildren(rightWrapper, [title, price, quantity, sum]);
             appendChildren(thumbnailParent, [thumbnail]);
             appendChildren(parent, [thumbnailParent, rightWrapper]);
-            appendChildren(document.getElementById("cart"), [parent])
-        })
+            appendChildren(document.getElementById("cart"), [parent]);
+        });
+
+        const totalDiv = element("div", "cart_total");
+        totalDiv.innerText = `Your cart total is: Rs ${total}/-`;
+
+        const checkout = element('button', "checkout_button", {"onclick": "checkout()"});
+        checkout.innerText = "Check out";
+
+        document.getElementById("cart").appendChild(totalDiv);
+        document.getElementById("cart").appendChild(checkout);
 
     });
 
-    
-
 }
+
+function listenForUpdatesOnSellProductForm() {
+    
+    let children = Array.prototype.slice.call( document.getElementById('sell_form').children )
+    children.forEach((child) => {
+        child.addEventListener('input', doThing);
+    });
+    
+}
+
+function doThing(child) {
+    const target = this.className.split(" ")[0].replaceAll("sf", "sfpr");
+    const type = this.className.split(" ")[0].replaceAll("sf_", "");
+
+    const handler = {
+        id(value) {
+            console.log(value)
+            if (!!products.find(p => p.toLowerCase() === value.toLowerCase())) {
+                document.getElementById("sfpr_submit").setAttribute("type", "hidden");
+                const error = element("span", "error_message", {"id": "sfpr_error"})
+                error.innerText = `ID "${value}" already exists. Please try to use a unique ID.`
+                document.getElementById("sell_form").append(error);
+            } else {
+                document.getElementById("sfpr_error").remove()
+                document.getElementById("sfpr_submit").setAttribute("type", "submit")
+            }
+            document.getElementById("sfpr_gallery").setAttribute("href", `/gallery/${value}`)
+            return
+        },
+        title(value) {
+            document.getElementById("sfpr_gallery").innerText = `Visit ${value} gallery↗`
+            document.getElementById(target).innerText = value;
+        },
+        price(value) {
+            document.getElementById(target).innerText = `Rs ${value}`;
+        },
+        thumbnail(value) {
+            document.getElementById(target).setAttribute("src", value);
+        },
+        category(value) {
+            document.getElementById(target).innerText = value;
+            document.getElementById(target).setAttribute("href", `/category/${value.toLowerCase().replaceAll(" ", "-")}`);
+        },
+        content(value) {
+            document.getElementById(target).innerText = value;
+        },
+        description(value) {
+            document.getElementById(target).innerText = value;
+        }
+    }
+
+    handler[type](this.value)
+}
+
+
+
+
+
+
   
 function successPopup(message) {
 
