@@ -46,6 +46,14 @@ function socketHandler(socket, io, dir) {
             arr.push(p.id);
         });
         io.to(socket.id).emit("products_list", arr);
+    });
+
+    socket.on("get_ad", (data) => {
+        const raw = fs.readFileSync(dir+"/Public/Data/ads.json");
+        const ads = JSON.parse(raw);
+
+        const random = ads[Math.floor(Math.random()*ads.length)];
+        io.to(socket.id).emit("get_ad", random)
     })
 }
 

@@ -1,6 +1,4 @@
 function backgroundProcesses() {
-
-    socket.emit("log", "ues background presoose")
     
     // check if mobile;
 
@@ -36,6 +34,17 @@ function backgroundProcesses() {
         ]);
 
         appendChildren(document.getElementById("body"), [navigation])
+    };
+
+    // advertsimetn
+
+    const adBanner = document.getElementById("ad_banner");
+    if (!!adBanner) {
+        socket.emit("get_ad");
+        socket.on("get_ad", (data) => {
+            document.getElementById("ad_banner").setAttribute("href", data.url)
+            document.getElementById("ad_img").setAttribute("src", data.thumbnail)
+        });
     }
 }
 
@@ -48,7 +57,6 @@ function homeProducts(socket) {
         const categories = [];
 
         data.forEach(product => {
-            console.log(product.id);
 
             const parent = element('a', 'home_product_parent', {"href": `${product.url}`});
             
@@ -189,6 +197,9 @@ function productPage(socket) {
 
         });
 
+        const author = element("a", "prdt_field prdt_author prdt_gallery", {"href": `/${data.author || "admin"}`});
+        author.innerText = `Seller: ${data.author || "Admin"}`
+
         appendChildren(thumbnailParent, [
             thumbnail
         ]);
@@ -206,7 +217,8 @@ function productPage(socket) {
             category,
             content,
             reviewHead,
-            reviewsParent
+            reviewsParent,
+            author
         ])
 
         appendChildren(document.getElementById("main"), [parent])
