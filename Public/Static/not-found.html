@@ -40,16 +40,14 @@
         <input type="text" name="search" id="search" class="search_bar" placeholder="Search.."><button type="submit" class="search_submit">🔍</button>
     </div>
 
-    <!-- <a href="/" class="ad_parent">
-        <img src="//i.imgur.com/j40cieL.png" alt="" class="ad_img">
-    </a> -->
-
     <div class="main">
 
-        <span class="heading center">💪 All categories:</span>
+        <span class="heading center">404!:</span>
         <span class="horizontal_rule"></span>
 
-        <div id="categories"></div>
+        <img src="https://i.imgur.com/tDNaWvN.png" alt="404" class="empty_cart_image">
+        
+        <span style="margin-top: 20px;" class="heading center">The link you have followed does not exist!</span>
 
     </div>
 
@@ -57,7 +55,6 @@
     <script src="/script.js"></script>
     <script>
         const socket = io();
-        getCategories(socket);
         backgroundProcesses(socket);
     </script>
 

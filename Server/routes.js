@@ -6,13 +6,21 @@ function createRoutes(app, dir) {
         res.sendFile(dir + "/Public/index.html")
     });
 
-    app.get('/disclaimer', (req, res) => {
-        res.sendFile(dir + "/Public/Static/disclaimer.html")
+    app.get('/home', (req, res) => {
+        res.sendFile(dir + "/Public/index.html")
     });
 
     app.get('/products', (req, res) => {
         res.sendFile(dir + "/Public/index.html")
-    })
+    });
+
+    app.get('/disclaimer', (req, res) => {
+        res.sendFile(dir + "/Public/Static/disclaimer.html")
+    });
+
+    app.get('/customer-care', (req, res) => {
+        res.redirect("//discord.gg/VJ8jHWTj4K")
+    });    
 
     app.get('/products/:product', (req, res) => {
         res.sendFile(dir + "/Public/Dynamic/product.html")
@@ -34,6 +42,8 @@ function createRoutes(app, dir) {
         res.sendFile(dir + "/Public/Dynamic/sell.html")
     })
 
+    // statics
+
     app.get('/style.css', (req, res) => {
         res.sendFile(dir + "/Public/Styles/style.css")
     })
@@ -42,12 +52,24 @@ function createRoutes(app, dir) {
         res.sendFile(dir + "/Public/Styles/style_minor.css")
     });
 
+    app.get('/style-responsive.css', (req, res) => {
+        res.sendFile(dir + "/Public/Styles/style_responsive.css")
+    });
+
     app.get('/script.js', (req, res) => {
         res.sendFile(dir + "/Public/Scripts/script.js")
     });
 
+    // post routes
+
     app.post('/sell', (req, res) => {
         sell(req, res, dir)
+    });
+
+    // 404
+
+    app.get("*", (req, res) => {
+        res.sendFile(dir + "/Public/Static/not-found.html")
     });
 
 }

@@ -5,6 +5,8 @@ function socketHandler(socket, io, dir) {
 
     // socket functions below
 
+    socket.on("log", console.log)
+
     socket.on("home_products", (data) => {
         const products = makeProducts(dir);
         io.to(socket.id).emit("home_products" ,products);

@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/style-minor.css">
     <link rel="stylesheet" href="/style-responsive.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/flickity/1.0.0/flickity.css">
-    <title>Saste Nashe - Solid Pixel</title>
+    <title>Affiliate program - Saste Nashe - Solid Pixel</title>
 </head>
 <body id="body">
 
@@ -40,16 +40,23 @@
         <input type="text" name="search" id="search" class="search_bar" placeholder="Search.."><button type="submit" class="search_submit">🔍</button>
     </div>
 
-    <!-- <a href="/" class="ad_parent">
+    <a href="/" class="ad_parent">
         <img src="//i.imgur.com/j40cieL.png" alt="" class="ad_img">
-    </a> -->
+    </a>
 
     <div class="main">
 
-        <span class="heading center">💪 All categories:</span>
+        <span class="heading center">🤑 Join the SasteNashe affiliate program:</span>
         <span class="horizontal_rule"></span>
 
-        <div id="categories"></div>
+        <div id="products"></div>
+        
+        <span class="heading center">🔥 Popular categories:</span>
+        <span class="horizontal_rule"></span>
+
+        <div class="categories_table">
+            <div class="categories_table_row_top" id="ctrt"></div>
+        </div>
 
     </div>
 
@@ -57,8 +64,8 @@
     <script src="/script.js"></script>
     <script>
         const socket = io();
-        getCategories(socket);
         backgroundProcesses(socket);
+        homeProducts(socket);
     </script>
 
 </body>

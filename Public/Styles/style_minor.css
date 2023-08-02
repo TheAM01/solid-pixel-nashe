@@ -10,6 +10,7 @@
     justify-self: center;
     align-self: center;
     user-select: none;
+    filter: invert();
 }
 
 .ad_parent::before {
@@ -37,9 +38,13 @@
 }
 
 .main {
+    background-image: url("https://www.transparenttextures.com/patterns/binding-dark.png");
+    /* background-image: url("https://www.transparenttextures.com/patterns/beige-paper.png"); */
     margin: 50px auto 0 auto;
     width: 65%;
+    padding: 50px;
     flex-direction: column;
+    background-color: var(--tertiary);
 }
 
 .main100 {
@@ -109,6 +114,10 @@ hmpr: home_product
     box-shadow: var(--std-shadow);
 }
 
+.home_product_parent:last-child {
+    margin-right: 0;
+}
+
 .hmpr_thumbnail {
     width: 100%;
 }
@@ -128,8 +137,16 @@ hmpr: home_product
 
 .hmpr_title {
     font-size: 19px;
+    margin-bottom: 10px;
+    color: var(--font-inverted);
+}
+
+.hmpr_content {
+    color: gray;
     margin-bottom: 20px;
     flex-grow: 1;
+    justify-self: start;
+    align-self: flex-start;
 }
 
 .hmpr_price {
@@ -148,14 +165,18 @@ ctrt: categories_table_row_top
 
 */
 
+.categories_table {
+    align-self: center;
+}
+
 .categories_table_row_top {
     margin-top: 30px;
     margin-bottom: 50px;
-    flex-direction: column;
+    flex-direction: row;
 }
 
 .categories_table_row_top:nth-child(1) {
-    border-top: 1px solid var(--accent);
+    border-left: 2px solid var(--accent);
 }
 
 .category_table_element {
@@ -164,9 +185,10 @@ ctrt: categories_table_row_top
     text-decoration: none;
     text-transform: capitalize;
     color: var(--font);
-    border: 1px solid var(--accent);
-    border-top: none;
+    border: 2px solid var(--accent);
+    border-left: none;
     transition: 0.1s;
+    text-align: center;
 }
 
 .category_table_element:hover {
@@ -181,6 +203,7 @@ prdt: product_details
 
 */
 .product_details_parent {
+    background-image: url("https://www.transparenttextures.com/patterns/cartographer.png");
     width: 80%;
     background-color: var(--primary);
     padding: 20px;
@@ -208,8 +231,8 @@ prdt: product_details
 }
 
 .prdt_title {
-    text-shadow: 2px 7px 5px rgba(0,0,0,0.3), 0px -4px 10px rgba(0,0,0,0.3);
-    color: var(--font);
+    text-shadow: 2px 7px 5px rgba(255,255,255,0.3), 0px -4px 10px rgba(0,0,0,0.3);
+    color: var(--font-inverted);
     margin-bottom: 20px;
     font-size: 50px;
     justify-content: space-between;
@@ -257,14 +280,14 @@ prdt: product_details
 
 .add_to_cart_button:hover {
     cursor: pointer;
-    box-shadow: var(--std-shadow);
+    box-shadow: var(--inv-shadow);
     border-radius: 10px;
 }
 
 .prdt_field {
     border: 1px solid var(--secondary);
     padding: 20px;
-    color: var(--font);
+    color: var(--font-inverted);
     margin: 10px 0 10px 0;
 }
 
@@ -276,10 +299,11 @@ prdt: product_details
 .prdt_gallery {
     transition: 0.1s;
     text-decoration: none;
+    color: var(--font-inverted);
 }
 
 .prdt_gallery:hover {
-    background-color: var(--secondary);
+    background-color: var(--accent);
 }
 
 .prdt_category a {
@@ -291,8 +315,12 @@ prdt: product_details
     text-transform: capitalize;
 }
 
+.prdt_category a:hover {
+    color: var(--font);
+}
+
 .prdt_category:hover {
-    background-color: var(--secondary);
+    background-color: var(--accent);
 }
 
 .prdt_category {
@@ -321,7 +349,7 @@ prdt: product_details
 }
   
 .prdt_review_author {
-    color: var(--accent);
+    color: var(--accent) !important;
     margin-right: 10px;
 }
   
@@ -330,7 +358,7 @@ prdt: product_details
 }
   
 .prdt_review_content {
-    color: var(--font)
+    color: var(--font-inverted)
 }
 
 .success {
@@ -373,6 +401,7 @@ div#categories, div#category, div#cart {
 
 .ctls_link:hover {
     background-color: var(--primary);
+    color: var(--font-inverted);
 }
 
 .cart_item_parent {
@@ -406,6 +435,7 @@ div#categories, div#category, div#cart {
 .crit_cell {
     margin-bottom: 15px;
     font-size: 18px;
+    color: var(--font-inverted);
 }
 
 .crit_title {
@@ -420,6 +450,7 @@ div#categories, div#category, div#cart {
     width: auto;
     justify-content: space-between;
     align-items: center;
+    color: var(--font-inverted);
 }
 
 .remove_from_cart {
@@ -428,6 +459,7 @@ div#categories, div#category, div#cart {
     padding: 5px;
     font-size: 15px;
     transition: 0.1s;
+    color: var(--font-inverted);
 }
 .remove_from_cart:hover {
     border-radius: 10px;
@@ -518,3 +550,14 @@ div#categories, div#category, div#cart {
     border: 2px solid var(--primary);
     color: var(--tertiary);
 }
+
+.empty_cart_image {
+    display: flex;
+    width: 500px;
+    justify-self: center;
+    align-self: center;
+}
+
+/* .screen_nav {
+    display: none;
+} */

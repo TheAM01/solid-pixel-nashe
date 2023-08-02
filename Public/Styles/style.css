@@ -13,13 +13,28 @@
     --font-inverted: #c7cad1;
 
     --std-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    --inv-shadow: rgba(255, 255, 255, 0.35) 0px 5px 15px;
     
+}
+
+:root {
+    --primary: #222222;
+    --secondary: #434242;
+    --tertiary: #F3EFE0;
+    --accent: #22A39F;
+    --background: rgb(249, 247, 240);
+
+    --font: black;
+    --font-inverted: white;
 }
 
 body {
     display: flex;
     flex-direction: column;
     background-color: var(--background);
+    /* background-image: url("https://static.colourlovers.com/images/patterns/50/50713.png"); */
+    background-image: url("https://www.transparenttextures.com/patterns/beige-paper.png");
+    /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
     padding: 0;
     margin: 0;
 }
@@ -27,7 +42,7 @@ body {
 body div {
     display: flex;
     font-family: 'Rubik', sans-serif;
-    color: var(--font);
+    /* color: var(--font); */
 }
 
 .header_1 {
@@ -113,6 +128,10 @@ span.error_message {
     justify-content: center;
 }
 
+span.invert {
+    color: var(--font-inverted);
+}
+
 .back_button {
     background-color: var(--primary);
     border: 2px solid var(--accent);
@@ -121,13 +140,14 @@ span.error_message {
     width: max-content;
     border-radius: 20px;
     transition: 0.1s;
+    color: var(--font-inverted);
 }
 
 .back_button:hover {
     cursor: pointer;
     background-color: var(--secondary);
     border: 2px solid var(--secondary);
-    box-shadow: var(--std-shadow);
+    box-shadow: var(--inv-shadow);
 }
 
 .para {

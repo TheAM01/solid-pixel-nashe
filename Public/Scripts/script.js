@@ -1,3 +1,44 @@
+function backgroundProcesses() {
+
+    socket.emit("log", "ues background presoose")
+    
+    // check if mobile;
+
+    if (window.screen.width <= 800) {
+
+        const navigation = element("div", "screen_nav");
+        
+        const home = element("a", "screen_nav_element", {"href": "/products"});
+        home.append(
+            element("img", "screen_nav_icon", {"src": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Home-icon.svg/1024px-Home-icon.svg.png"})
+        );
+
+        const categories = element("a", "screen_nav_element", {"href": "/category"});
+        categories.append(
+            element("img", "screen_nav_icon", {"src": "https://pixlok.com/wp-content/uploads/2021/12/Apps-Icon-SVG-93nd.png"})
+        );
+
+        const cart = element("a", "screen_nav_element", {"href": "/cart"});
+        cart.append(
+            element("img", "screen_nav_icon", {"src": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Font_Awesome_5_solid_shopping-cart.svg/1152px-Font_Awesome_5_solid_shopping-cart.svg.png"})
+        );
+
+        const account = element("a", "screen_nav_element", {"href": "/account"});
+        account.append(
+            element("img", "screen_nav_icon", {"src": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Ic_account_circle_48px.svg/1200px-Ic_account_circle_48px.svg.png"})
+        );
+
+        appendChildren(navigation, [
+            home,
+            categories,
+            cart,
+            account
+        ]);
+
+        appendChildren(document.getElementById("body"), [navigation])
+    }
+}
+
 function homeProducts(socket) {
 
     socket.emit("home_products");
@@ -16,8 +57,11 @@ function homeProducts(socket) {
             const thumbnail = element('img', 'hmpr_thumbnail', {"src": product.thumbnail});
 
             const title = element('div', "hmpr_title");
-            if (product.content[0].length > 20) product.content[0] = truncate(product.content[0], 30)
-            title.innerText = `${product.name} - ${product.content[0]}`;
+            if (product.content[0].length > 20) product.content[0] = truncate(product.content[0], 30);
+            title.innerText = `${product.name}`;
+
+            const content = element("div", "hmpr_content");
+            content.innerText = `${product.content[0]}`;
 
             const price = element('div', 'hmpr_price');
 
@@ -32,6 +76,7 @@ function homeProducts(socket) {
             appendChildren(parent, [
                 thumbnailParent,
                 title,
+                content,
                 price
             ]);
 
@@ -65,7 +110,6 @@ function productPage(socket) {
 
     socket.on("product", (data) => {
 
-        console.log(data)
         const backButton = element("button", "back_button", {"onclick": "history.back()"});
         backButton.innerText = "⬅ Go back";
 
@@ -106,7 +150,7 @@ function productPage(socket) {
 
         const reviewsParent = element("div", "prdt_reviews_parent");
 
-        const reviewHead = element("span", "heading");
+        const reviewHead = element("span", "heading invert");
         reviewHead.innerText = "Reviews: "
         reviewHead.style.margin = "10px 0 10px 0"
 
@@ -177,12 +221,10 @@ function addToCart(item) {
     let cartRaw = getCookie("cart");
     let cart;
     // let item = JSON.parse(i)
-    console.log({cart: cartRaw, item: item.id});
   
     let qty = Math.abs(parseInt(document.getElementById("cart_quantity").value)) || 1;
   
     if (!cartRaw) {
-      console.log("Cart is empty.")
       let cart = [{
         id: item.id,
         quantity: qty,
@@ -223,7 +265,6 @@ function getCategories(socket) {
     socket.emit("get_categories");
 
     socket.on("get_categories", (data) => {
-        console.log(data);
 
         data.forEach(category => {
             const link = element("a", "ctls_link", {"href": `/category/${category.replaceAll(" ", "-")}`});
@@ -237,18 +278,17 @@ function getCategories(socket) {
 function getCategory(socket) {
     const urx = new URL(window.location.href);
     const pr = (urx.pathname.split('/')[2]);
-    console.log(pr);
 
     socket.emit("get_category", pr.toLowerCase().replaceAll("-", " "));
 
     socket.on("get_category", (data) => {
-        console.log(data);
 
         data.forEach(category => {
             const link = element("a", "ctls_link", {"href": `/products/${category.id}`});
             link.innerText = category.name;
             document.getElementById("category").appendChild(link)
         });
+
     });
 }
 
@@ -283,7 +323,6 @@ function buildCart() {
     socket.emit("home_products");
     socket.on("home_products", (data) => {
 
-        console.log(data);
         cart.forEach(i => {
 
             const matchedProduct = data.find(k => k.id === i.id);
@@ -347,7 +386,6 @@ function doThing(child) {
 
     const handler = {
         id(value) {
-            console.log(value)
             if (!!products.find(p => p.toLowerCase() === value.toLowerCase())) {
                 document.getElementById("sfpr_submit").setAttribute("type", "hidden");
                 const error = element("span", "error_message", {"id": "sfpr_error"})
@@ -432,8 +470,6 @@ function getCookie(cname) {
 function removeFromCart(id) {
   
     const cart = JSON.parse(getCookie("cart"));
-  
-    console.log(cart);
   
     const index = cart.findIndex(i => i.id.toLowerCase() === id.toLowerCase());
     if (index > -1) { // only splice array when item is found
