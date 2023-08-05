@@ -295,6 +295,9 @@ function getCategory(socket) {
 
     socket.on("get_category", (data) => {
 
+        document.getElementById("cat_head").innerHTML = `📃 Products of <span class="capitalize emphasis">${pr.replaceAll("-", ' ')}</span> category`;
+
+
         data.forEach(category => {
             const link = element("a", "ctls_link", {"href": `/products/${category.id}`});
             link.innerText = category.name;

@@ -1,5 +1,31 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald&family=Rubik:wght@300;400&display=swap');
 
+* {
+    box-sizing: border-box;
+}
+
+::-webkit-scrollbar-track {
+    background-color: transparent;
+	border-radius: 10px;
+	/* background-color: #CCCCCC; */
+}
+
+::-webkit-scrollbar {
+	width: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+	border-radius: 5px;
+	background-color: var(--primary);
+	background-image: -webkit-linear-gradient(90deg, transparent, var(--secondary) 50%, transparent, transparent);
+}
+
+::-webkit-scrollbar-thumb:active {
+	background-color: var(--secondary);
+    background-image: -webkit-linear-gradient(90deg, transparent, var(--primary) 50%, transparent, transparent);
+    cursor: pointer;
+}
+
 :root {
 
     --primary: #70ACB1;
@@ -32,11 +58,11 @@ body {
     display: flex;
     flex-direction: column;
     background-color: var(--background);
-    /* background-image: url("https://static.colourlovers.com/images/patterns/50/50713.png"); */
-    background-image: url("https://www.transparenttextures.com/patterns/beige-paper.png");
-    /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+    background-image: url("https://www.transparenttextures.com/patterns/grilled-noise.png");
+    /* background-image: url("https://www.transparenttextures.com/patterns/hixs-evolution.png"); */
     padding: 0;
     margin: 0;
+    min-height: 100vh;
 }
 
 body div {
@@ -46,8 +72,9 @@ body div {
 }
 
 .header_1 {
+    background-color: var(--background);
     justify-content: space-evenly;
-    width: 70%;
+    width: 100%;
     align-self: center;
     padding: 5px;
 }
@@ -64,6 +91,7 @@ body div {
 }
 
 .navigation {
+    background-image: url("https://www.transparenttextures.com/patterns/dark-wood.png");
     background-color: var(--primary);
     justify-content: space-around;
 }
@@ -98,8 +126,13 @@ body div {
 .nav_link:hover {
     background-color: var(--accent);
 }
+
 span.heading {
     font-size: 20px;
+}
+
+span.capitalize {
+    text-transform: capitalize;
 }
 
 span.center {
@@ -154,4 +187,71 @@ span.invert {
     width: auto;
     flex-direction: column;
     font-size: 18px;
+}
+
+/* .footer {
+    width: 100%;
+    margin: 100vh 0 0 0;
+    flex-direction: row;
+    background-color: red;
+    justify-content: space-evenly;
+    padding: 20px;
+} */
+
+.footer {
+    border: 10px solid var(--secondary);
+    box-sizing: border-box;
+    flex-direction: column;
+    margin-top: auto;
+    margin-bottom: 0;
+    width: 100%;
+    background-color: var(--secondary);
+    /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+    background-image: url("https://www.transparenttextures.com/patterns/dark-mosaic.png");
+}
+
+.footer_top {
+    color: var(--font-inverted);
+    /* background-color: #004f8c; */
+    /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+    border-bottom: 5px solid var(--secondary);
+    padding: 20px;
+}
+
+.footer_bottom {
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+.footer_panel {
+    padding: 20px;
+    flex-direction: column;
+    color: var(--tertiary);
+}
+
+.footer_heading {
+    font-size: 15px;
+    padding: 10px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    text-align: center;
+    justify-content: center;
+    align-content: center;
+    color: var(--accent);
+    border-bottom: 1px solid var(--primary);
+}
+
+.footer_element {
+    text-align: center;
+    font-size: 12px;
+    text-decoration: none;
+    color: var(--font-inverted);
+    padding: 10px;
+    text-transform: uppercase;
+    transition: 0.1s;
+}
+
+.footer_element:hover {
+    color: var(--accent);
 }

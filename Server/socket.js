@@ -1,11 +1,16 @@
 import fs from "fs";
 
+let print = (...args) => {
+    console.log(args);
+}
+
+if (process.env.ENV !== "PRODUCTION") print = () => {};
 
 function socketHandler(socket, io, dir) {
 
     // socket functions below
 
-    socket.on("log", console.log)
+    socket.on("log", print)
 
     socket.on("home_products", (data) => {
         const products = makeProducts(dir);
@@ -33,7 +38,6 @@ function socketHandler(socket, io, dir) {
         const products = makeProducts(dir);
         let matches = [];
         products.forEach(p => {
-            console.log([p.category.toLowerCase(), data]);
             if (p.category.toLowerCase() === data) matches.push(p);
         });
         io.to(socket.id).emit("get_category", matches);

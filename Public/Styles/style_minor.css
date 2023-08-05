@@ -40,11 +40,13 @@
 .main {
     background-image: url("https://www.transparenttextures.com/patterns/binding-dark.png");
     /* background-image: url("https://www.transparenttextures.com/patterns/beige-paper.png"); */
-    margin: 50px auto 0 auto;
+    margin: 50px auto 150px auto;
     width: 65%;
     padding: 50px;
     flex-direction: column;
+    height: 100%;
     background-color: var(--tertiary);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .main100 {
@@ -63,6 +65,9 @@
 }
 
 .search_bar_parent {
+    /* background-image: url("https://www.transparenttextures.com/patterns/diamond-upholstery.png"); */
+    background-image: url("https://www.transparenttextures.com/patterns/french-stucco.png");
+
     background-color: var(--secondary);
     padding: 10px;
     align-content: center;
@@ -164,31 +169,37 @@ hmpr: home_product
 ctrt: categories_table_row_top
 
 */
+.categories_table, .categories_table * {
+    box-sizing: border-box;
+}
 
 .categories_table {
-    align-self: center;
+    padding: 20px;
+    background-color: var(--tertiary);
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 50px;
 }
 
 .categories_table_row_top {
-    margin-top: 30px;
-    margin-bottom: 50px;
-    flex-direction: row;
+    flex-direction: column;
+    width: 100%;
 }
 
-.categories_table_row_top:nth-child(1) {
-    border-left: 2px solid var(--accent);
+.category_table_element:first-child {
+    border-top: 2px solid var(--accent);
 }
 
 .category_table_element {
+    width: 100%;
     padding: 20px;
     font-size: 18px;
     text-decoration: none;
     text-transform: capitalize;
     color: var(--font);
     border: 2px solid var(--accent);
-    border-left: none;
+    border-top: none;
     transition: 0.1s;
-    text-align: center;
 }
 
 .category_table_element:hover {
