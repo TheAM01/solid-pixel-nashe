@@ -193,9 +193,46 @@ function productPage(socket) {
                 ]
             );
 
-            reviews.push(reviewParent)
-
+            reviews.push(reviewParent);
+           
         });
+
+        const addReview = element("input", "add_review_input", {"type": "text", "id": "add_review_field", "placeholder": "Add your own review"});
+
+        const sh = element("div", "stars_selection_before");
+        sh.innerText = "⭐";
+
+
+        const stars = element("select", "stars_selection", {"name": "stars", "id": "add_review_stars"});
+
+        let s1 = element("option", "s", {"value": "1"});
+        s1.innerText = "1";
+        let s2 = element("option", "s", {"value": "2"});
+        s2.innerText = "2";
+        let s3 = element("option", "s", {"value": "3"});
+        s3.innerText = "3";
+        let s4 = element("option", "s", {"value": "4"});
+        s4.innerText = "4";
+        let s5 = element("option", "s", {"value": "5", "selected": "true"});
+        s5.innerText = "5";
+
+        appendChildren(stars, [
+            s1,
+            s2,
+            s3,
+            s4,
+            s5
+        ])
+        
+
+        const submitReview = element("button", "submit_review", {"onclick": "submitReview()", "id": "submit_review"});
+        submitReview.innerText = "Submit";
+
+
+        const reviewPseudoForm = element("div", "review_form");
+        appendChildren(reviewPseudoForm, [sh, stars, addReview, submitReview]);
+
+        reviews.push(reviewPseudoForm)
 
         const author = element("a", "prdt_field prdt_author prdt_gallery", {"href": `/${data.author || "admin"}`});
         author.innerText = `Seller: ${data.author || "Admin"}`
@@ -436,6 +473,15 @@ function doThing(child) {
     }
 
     handler[type](this.value)
+}
+
+function submitReview() {
+    const review = document.getElementById("add_review_field").value;
+    const stars = document.getElementById("add_review_stars").value;
+
+    if (!review) return;
+
+    console.log([review, stars])
 }
 
 

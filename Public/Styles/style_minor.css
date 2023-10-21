@@ -372,6 +372,51 @@ prdt: product_details
     color: var(--font-inverted)
 }
 
+.review_form {
+    background-color: var(--secondary);
+    padding: 10px;
+}
+
+.stars_selection_before {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    background-color: var(--accent);
+    height: max-content;
+    align-self: center;
+    padding: 5px 0 5px 0;
+}
+
+.stars_selection {
+    border: none;
+    border-radius: 5px;
+    background-color: var(--accent);
+    margin-right: 10px;
+    color: var(--font-inverted);
+}
+
+.add_review_input {
+    padding: 10px;
+    flex: 1;
+    margin-right: 10px;
+    background-color: var(--tertiary);
+    border: none;
+}
+
+.add_review_input:focus {
+    box-shadow: var(--inv-shadow);
+}
+
+.submit_review {
+    background-color: var(--accent);
+    border: none;
+    color: var(--font-inverted);
+}
+
+.submit_review:hover {
+    box-shadow: var(--std-shadow);
+    cursor: pointer;
+}
+
 .success {
     position: fixed;
     font-size: 30px;
@@ -493,6 +538,8 @@ div#categories, div#category, div#cart {
 }
 
 .checkout_button:hover {
+    background-image: url("https://www.transparenttextures.com/patterns/football-no-lines.png");
+
     background-color: var(--accent);
     box-shadow: var(--std-shadow);
     cursor: pointer;
