@@ -40,13 +40,13 @@ function createRoutes(app, dir) {
 
     app.get('/sell', (req, res) => {
         res.sendFile(dir + "/Public/Dynamic/sell.html")
-    })
+    });
 
     // statics
 
     app.get('/style.css', (req, res) => {
         res.sendFile(dir + "/Public/Styles/style.css")
-    })
+    });
 
     app.get('/style-minor.css', (req, res) => {
         res.sendFile(dir + "/Public/Styles/style_minor.css")
