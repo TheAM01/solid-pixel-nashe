@@ -94,11 +94,13 @@ function homeProducts(socket) {
 
             document.getElementById("products").appendChild(parent);
 
-            if (!categories.includes(product.category)) {
-                categories.push(product.category)
+            if (!categories.includes(product.category.toLowerCase())) {
+                categories.push(product.category.toLowerCase())
             }
 
         });
+
+        categories.sort();
 
         categories.forEach(c => {
 
@@ -121,6 +123,8 @@ function productPage(socket) {
     socket.emit("product", (pr));
 
     socket.on("product", (data) => {
+
+        if (data === 404) return window.location.replace("/*")
 
         const backButton = element("button", "back_button", {"onclick": "history.back()"});
         backButton.innerText = "⬅ Go back";
@@ -272,6 +276,35 @@ function productPage(socket) {
         document.title = `${data.name} - SasteNashe - Solid Pixel`
 
     })
+}
+
+function fillCategories(socket) {
+
+    socket.emit("home_products");
+    socket.on("home_products", (data) => {
+
+        const categories = [];
+        const options = [];
+
+        data.forEach(item => {
+
+            if (!categories.includes(item.category.toLowerCase())) {
+                categories.push(item.category.toLowerCase())
+            }
+
+        });
+
+        categories.sort();
+        
+        categories.forEach(category => {
+            const option = element("option", "category_option", {"value": category});
+            option.innerText = category;
+            
+            document.getElementById("product_category").appendChild(option)
+        });
+
+    });
+
 }
 
 function addToCart(item) {
@@ -448,7 +481,8 @@ function buildCart() {
 
 function listenForUpdatesOnSellProductForm() {
     
-    let children = Array.prototype.slice.call( document.getElementById('sell_form').children);
+    let children = Array.prototype.slice.call(document.getElementById('sell_form').children);    
+    
     children.forEach((child) => {
         child.addEventListener('input', doThing);
     });
@@ -459,6 +493,7 @@ function doThing(child) {
 
     const target = this.className.split(" ")[0].replaceAll("sf", "sfpr");
     const type = this.className.split(" ")[0].replaceAll("sf_", "");
+
 
     const handler = {
 
@@ -472,7 +507,7 @@ function doThing(child) {
                 document.getElementById("sell_form").append(error);
 
             } else {
-
+                if (!document.getElementById("sfpr_error")) return
                 document.getElementById("sfpr_error").remove()
                 document.getElementById("sfpr_submit").setAttribute("type", "submit");
 
@@ -497,8 +532,25 @@ function doThing(child) {
         },
 
         category (value) {
+
+            if (value.toLowerCase === "other") {
+
+                document.getElementById("sfpr_submit").setAttribute("type", "hidden");
+                const error = element("span", "error_message", {"id": "sfpr_error"})
+                error.innerText = `Please select a valid category.`
+                document.getElementById("sell_form").append(error);
+
+            } else {
+
+                if (!document.getElementById("sfpr_error")) return
+                document.getElementById("sfpr_error").remove()
+                document.getElementById("sfpr_submit").setAttribute("type", "submit");
+
+            }
+
             document.getElementById(target).innerText = value;
             document.getElementById(target).setAttribute("href", `/category/${value.toLowerCase().replaceAll(" ", "-")}`);
+
         },
 
         content (value) {
@@ -507,7 +559,9 @@ function doThing(child) {
 
         description (value) {
             document.getElementById(target).innerText = value;
-        }
+        },
+
+
 
     }
 
