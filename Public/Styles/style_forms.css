@@ -1,0 +1,76 @@
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+input, button {
+    font-family: "Nunito", sans-serif;
+}
+
+input[type="submit"] {
+    transition: 0.2s;
+    box-sizing: content-box;
+    border: 2px solid transparent;
+}
+
+input[type="submit"]:hover {
+    cursor: pointer;
+    /*box-shadow: rgba(0, 0, 0, 0.5) 0 2px 5px;*/
+    border: 2px solid var(--secondary);
+}
+
+textarea:focus, input:focus{
+    outline: none;
+}
+
+.inline_input_wrapper {
+    width: 400px;
+    justify-content: space-between;
+    margin: 20px 0;
+}
+
+.inline_inputs {
+    width: 190px;
+    background-color: transparent;
+    padding: 10px;
+    font-size: 20px;
+    border: none;
+    border-bottom: 2px solid gray;
+}
+
+.user_inputs {
+    background-color: transparent;
+    padding: 10px;
+    font-size: 20px;
+    border: none;
+    border-bottom: 2px solid gray;
+    margin: 20px 0;
+    width: 400px;
+}
+
+.user_inputs::placeholder, .inline_inputs::placeholder {
+    text-transform: uppercase;
+    font-size: 0.7em;
+    font-family: "Nunito", sans-serif;
+    font-weight: 600;
+}
+
+.user_inputs:focus, .inline_inputs:focus {
+    border-bottom: 2px solid var(--secondary);
+}
+
+.user_submit {
+    border: unset;
+    margin: 20px 0;
+    padding: 7px 7px;
+    background-color: var(--accent);
+    color: var(--font-inverted);
+    font-weight: 600;
+    font-family: "Nunito", sans-serif;
+    text-transform: uppercase;
+}
+
+.refer_to_other_option {
+    color: var(--secondary);
+}

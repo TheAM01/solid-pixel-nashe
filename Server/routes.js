@@ -1,9 +1,14 @@
 import sell from "./Functions/sell.js";
+import bcrypt from "bcryptjs";
+import signup from "./Functions/signup.js";
+import login from "./Functions/login.js";
+import db from "./db.js";
 
 function createRoutes(app, dir) {
 
     app.get('/', (req, res) => {
-        res.sendFile(dir + "/Public/index.html")
+        console.log(req.session.user, req.session.authenticated);
+        res.sendFile(dir + "/Public/index.html");
     });
 
     app.get('/home', (req, res) => {
@@ -20,7 +25,11 @@ function createRoutes(app, dir) {
 
     app.get('/customer-care', (req, res) => {
         res.redirect("//discord.gg/VJ8jHWTj4K")
-    });    
+    });
+
+    app.get('/affiliate', (req, res) => {
+        res.sendFile(dir + "/Public/Static/affiliate.html");
+    });
 
     app.get('/products/:product', (req, res) => {
         res.sendFile(dir + "/Public/Dynamic/product.html")
@@ -39,8 +48,28 @@ function createRoutes(app, dir) {
     });
 
     app.get('/sell', (req, res) => {
+        if (!req.session.authenticated)
+            return res.redirect('/login?login-first=true');
+
+        if (!req.session.user)
+            return res.redirect('/login?login-first=true');
+
         res.sendFile(dir + "/Public/Dynamic/sell.html")
     });
+
+    app.get('/recently-sold', (req, res) => {
+        res.sendFile(dir + "/Public/Dynamic/recently-sold.html")
+    });
+
+    // user
+
+    app.get('/login', (req, res) => {
+        res.sendFile(dir + "/Public/User/login.html");
+    });
+
+    app.get('/signup', (req, res) => {
+        res.sendFile(dir + "/Public/User/signup.html");
+    })
 
     // statics
 
@@ -56,15 +85,54 @@ function createRoutes(app, dir) {
         res.sendFile(dir + "/Public/Styles/style_responsive.css")
     });
 
+    app.get('/style-forms.css', (req, res) => {
+        res.sendFile(dir + "/Public/Styles/style_forms.css")
+    });
+
     app.get('/script.js', (req, res) => {
         res.sendFile(dir + "/Public/Scripts/script.js")
+    });
+
+    app.get('/common.js', (req, res) => {
+       res.sendFile(dir + "/Public/Scripts/common.js");
+    });
+
+    app.get('/sell-form.js', (req, res) => {
+        res.sendFile(dir + "/Public/Scripts/sell-form.js");
+    });
+
+    app.get('/categories.js', (req, res) => {
+        res.sendFile(dir + "/Public/Scripts/categories.js");
+    });
+
+    app.get('/forms.js', (req, res) => {
+        res.sendFile(dir + "/Public/Scripts/forms.js")
     });
 
     // post routes
 
     app.post('/sell', (req, res) => {
-        sell(req, res, dir)
+        sell(req, res)
     });
+
+    app.post('/login', async (req, res) => {
+        await login(req, res);
+    });
+
+    app.post('/signup', async (req, res) => {
+        await signup(req, res);
+    });
+
+    app.post('/cart', (req, res) => {
+        res.clearCookie('cart', {path: '/'});
+
+        req.body.forEach(item => {
+            item.timestamp = (new Date()).toISOString().split('T')[0];
+        });
+
+        db.collection('transactions').insertMany(req.body);
+        res.redirect('/');
+    })
 
     // 404
 

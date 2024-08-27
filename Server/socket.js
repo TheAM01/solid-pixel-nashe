@@ -1,39 +1,35 @@
-import fs from "fs";
+import db from "./db.js";
 
 let print = (...args) => {
     console.log(args);
 }
 
-if (process.env.ENV !== "PRODUCTION") print = () => {};
-
 function socketHandler(socket, io, dir) {
 
     // socket functions below
 
-    socket.on("log", print)
+    socket.on("log", print);
 
-    socket.on("home_products", (data) => {
+    socket.on("home_products", async (data) => {
 
-        const products = makeProducts(dir);
-        io.to(socket.id).emit("home_products" ,products);
+        const products = await makeProducts();
+        io.to(socket.id).emit("home_products", products);
 
     });
 
-    socket.on("product", (pr) => {
+    socket.on("product", async (pr) => {
 
-        const products = makeProducts(dir);
-        const product = products.find(p => p.id.toLowerCase() === pr.toLowerCase());
+        const product = await db.collection('products')
+            .findOne({id: pr.toLowerCase()});
+
         if (!product) return io.to(socket.id).emit("product", 404);
         io.to(socket.id).emit("product", product);
 
     });
 
-    // i cant tssee i cant see i cant see
-    // the fog is comong the fog is coming the fog is coming
+    socket.on("get_categories", async (data) => {
 
-    socket.on("get_categories", (data) => {
-
-        const products = makeProducts(dir);
+        const products = await makeProducts();
         let categories = [];
         products.forEach(p => {
             if (categories.includes(p.category.toLowerCase())) return;
@@ -43,20 +39,18 @@ function socketHandler(socket, io, dir) {
 
     });
 
-    socket.on("get_category", (data) => {
+    socket.on("get_category", async (data) => {
 
-        const products = makeProducts(dir);
-        let matches = [];
-        products.forEach(p => {
-            if (p.category.toLowerCase() === data) matches.push(p);
-        });
+        const matches = await db.collection('products')
+            .find({category: data})
+            .toArray();
+
         io.to(socket.id).emit("get_category", matches);
 
     });
 
-    socket.on("products_list", (data) => {
-
-        const products = makeProducts(dir);
+    socket.on("products_list", async (data) => {
+        const products = await makeProducts();
         const arr = [];
         products.forEach(p => {
             arr.push(p.id);
@@ -65,14 +59,21 @@ function socketHandler(socket, io, dir) {
 
     });
 
-    socket.on("get_ad", (data) => {
+    socket.on("get_ad", async (data) => {
 
-        const raw = fs.readFileSync(dir+"/Public/Data/ads.json");
-        const ads = JSON.parse(raw);
-
-        const random = ads[Math.floor(Math.random()*ads.length)];
+        const ads = await db.collection("ads").find({}).toArray();
+        const random = ads[Math.floor(Math.random() * ads.length)];
         io.to(socket.id).emit("get_ad", random)
 
+    });
+
+    socket.on('recents', async () => {
+        const recents = await db.collection('transactions').find({}).toArray();
+        recents.reverse();
+        for (const recent of recents) {
+            recent.data = await db.collection('products').findOne({id: recent.id});
+        }
+        io.to(socket.id).emit('recents', recents);
     });
 
 }
@@ -81,18 +82,11 @@ function sorter(a, b) {
     return b.reviews.length - a.reviews.length
 }
 
-function makeProducts(dir) {
+async function makeProducts() {
 
-    const directory = fs.readdirSync(`${dir}/Public/Data/Products`);
-    const productsRaw = [];
+    const productsRaw = await db.collection('products').find({}).toArray();
 
-    directory.forEach(pr => {
-        return productsRaw.push(JSON.parse(fs.readFileSync(`${dir}/Public/Data/Products/${pr}`)));
-    });
-
-    const products = productsRaw.sort(sorter);
-    
-    return products;
+    return productsRaw.sort(sorter);
 
 }
 

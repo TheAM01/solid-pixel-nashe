@@ -1,12 +1,16 @@
-import fs from 'fs';
 import http from 'http';
 import path from "path";
 import express from "express";
 import { Server } from "socket.io";
 import bodyParser from 'body-parser';
+import session from "express-session";
+import MongoStore from "connect-mongo";
+import cookieParser from "cookie-parser";
 
 import createRoutes from "./Server/routes.js";
 import socketHandler from './Server/socket.js';
+import db from "./Server/db.js";
+
 
 const app = express();
 const dir = path.resolve();
@@ -17,6 +21,14 @@ const urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 app.use(jsonParser);
 app.use(urlencodedParser);
+app.use(cookieParser());
+app.use(session({
+    secret: "WAHOOOO",
+    resave: false,
+    saveUninitialized: true,
+    cookie: {},
+    store: MongoStore.create({ mongoUrl: `mongodb+srv://saste-nashe-main:${process.env.MONGO_PASSWORD}@saste-nashe-db.xlhdm.mongodb.net/?retryWrites=true&w=majority&appName=saste-nashe-db` })
+}));
 
 const io = new Server(server);
 
@@ -26,20 +38,7 @@ io.on('connection', (socket) => {
 
 createRoutes(app, dir);
 
-server.listen(port, () => {
+server.listen(port, async () => {
     console.clear();
     console.log(`Listening on port:\x1b[33m ${port}\x1b[0m`);
-
-    return;
-    
-    const location = dir + "/Public/Data";
-    const directory = fs.readdirSync(location);
-
-    const productsRaw = fs.readFileSync(location + "/products.json");
-    const products = JSON.parse(productsRaw);
-
-    products.forEach(p => {
-        fs.writeFileSync(location + `/Products/${p.id}.json`, JSON.stringify(p, null, 2))
-    });
-
 });

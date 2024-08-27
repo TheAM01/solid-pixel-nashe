@@ -36,7 +36,7 @@ function backgroundProcesses() {
         ]);
 
         appendChildren(document.getElementById("body"), [navigation])
-    };
+    }
 
     // advertsimetn
 
@@ -247,8 +247,8 @@ function productPage(socket) {
 
         reviews.push(reviewPseudoForm)
 
-        const author = element("a", "prdt_field prdt_author prdt_gallery", {"href": `/${data.author || "admin"}`});
-        author.innerText = `Seller: ${data.author || "Admin"}`
+        const author = element("a", "prdt_field prdt_author prdt_gallery", {"href": `/u/${data.seller || "admin"}`});
+        author.innerText = `Seller: ${data.seller || "Admin"}`
 
         appendChildren(thumbnailParent, [
             thumbnail
@@ -278,13 +278,39 @@ function productPage(socket) {
     })
 }
 
+function getRecentlySold(socket) {
+    socket.emit('recents');
+
+    socket.on('recents', async (data) => {
+        console.log(data)
+        if (!data[0]) {
+            document.getElementById('recently-sold')
+                .innerText = 'Nothing sold yet :\'(';
+            return;
+        }
+
+        for (const product of data) {
+            const wrapper = element('div', 'rs_wrapper');
+            const image = element('img', 'rs_thumbnail', {src: product.data.thumbnail});
+            const title = element('div', 'rs_name', {}, `Item: ${product.data.name}`);
+            const qty = element('div', 'rs_qty', {}, `Quantity: ${product.quantity}`);
+            const time = element('div', 'rs_time', {}, `Time: ${product.timestamp}`);
+
+            appendChildren(wrapper, [image, title, qty, time]);
+
+            document.getElementById('recently-sold').appendChild(wrapper);
+        }
+
+
+    });
+}
+
 function fillCategories(socket) {
 
     socket.emit("home_products");
     socket.on("home_products", (data) => {
 
         const categories = [];
-        const options = [];
 
         data.forEach(item => {
 
@@ -351,46 +377,6 @@ function addToCart(item) {
   
     return setCookie("cart", JSON.stringify(cart), 30);
   
-}
-
-function getCategories(socket) {
-
-    socket.emit("get_categories");
-
-    socket.on("get_categories", (data) => {
-
-        data.forEach(category => {
-
-            const link = element("a", "ctls_link", {"href": `/category/${category.replaceAll(" ", "-")}`});
-            link.innerText = category;
-            document.getElementById("categories").appendChild(link);
-
-        })
-    });
-
-}
-
-function getCategory(socket) {
-
-    const urx = new URL(window.location.href);
-    const pr = (urx.pathname.split('/')[2]);
-
-    socket.emit("get_category", pr.toLowerCase().replaceAll("-", " "));
-
-    socket.on("get_category", (data) => {
-
-        document.getElementById("cat_head").innerHTML = `📃 Products of <span class="capitalize emphasis">${pr.replaceAll("-", ' ')}</span> category`;
-
-        data.forEach(category => {
-
-            const link = element("a", "ctls_link", {"href": `/products/${category.id}`});
-            link.innerText = category.name;
-            document.getElementById("category").appendChild(link);
-
-        });
-
-    });
-
 }
 
 function buildCart() {
@@ -479,96 +465,6 @@ function buildCart() {
 
 }
 
-function listenForUpdatesOnSellProductForm() {
-    
-    let children = Array.prototype.slice.call(document.getElementById('sell_form').children);    
-    
-    children.forEach((child) => {
-        child.addEventListener('input', doThing);
-    });
-    
-}
-
-function doThing(child) {
-
-    const target = this.className.split(" ")[0].replaceAll("sf", "sfpr");
-    const type = this.className.split(" ")[0].replaceAll("sf_", "");
-
-
-    const handler = {
-
-        id (value) {
-
-            if (!!products.find(p => p.toLowerCase() === value.toLowerCase())) {
-
-                document.getElementById("sfpr_submit").setAttribute("type", "hidden");
-                const error = element("span", "error_message", {"id": "sfpr_error"})
-                error.innerText = `ID "${value}" already exists. Please try to use a unique ID.`
-                document.getElementById("sell_form").append(error);
-
-            } else {
-                if (!document.getElementById("sfpr_error")) return
-                document.getElementById("sfpr_error").remove()
-                document.getElementById("sfpr_submit").setAttribute("type", "submit");
-
-            }
-
-            document.getElementById("sfpr_gallery").setAttribute("href", `/gallery/${value}`)
-            return
-
-        },
-
-        title (value) {
-            document.getElementById("sfpr_gallery").innerText = `Visit ${value} gallery↗`
-            document.getElementById(target).innerText = value;
-        },
-
-        price (value) {
-            document.getElementById(target).innerText = `Rs ${value}`;
-        },
-
-        thumbnail (value) {
-            document.getElementById(target).setAttribute("src", value);
-        },
-
-        category (value) {
-
-            if (value.toLowerCase === "other") {
-
-                document.getElementById("sfpr_submit").setAttribute("type", "hidden");
-                const error = element("span", "error_message", {"id": "sfpr_error"})
-                error.innerText = `Please select a valid category.`
-                document.getElementById("sell_form").append(error);
-
-            } else {
-
-                if (!document.getElementById("sfpr_error")) return
-                document.getElementById("sfpr_error").remove()
-                document.getElementById("sfpr_submit").setAttribute("type", "submit");
-
-            }
-
-            document.getElementById(target).innerText = value;
-            document.getElementById(target).setAttribute("href", `/category/${value.toLowerCase().replaceAll(" ", "-")}`);
-
-        },
-
-        content (value) {
-            document.getElementById(target).innerText = value;
-        },
-
-        description (value) {
-            document.getElementById(target).innerText = value;
-        },
-
-
-
-    }
-
-    handler[type](this.value);
-
-}
-
 function submitReview() {
 
     const review = document.getElementById("add_review_field").value;
@@ -580,118 +476,52 @@ function submitReview() {
 
 }
 
-function successPopup(message) {
-
-    let msg = document.createElement("div")
-
-    msg.setAttribute("class", "success");
-    msg.setAttribute("id", "success_popup");
-    msg.innerText = message;
-
-    document.getElementById("body").appendChild(msg);
-
-    setTimeout(() => {document.getElementById("success_popup").remove()}, 3*1000);
-
-}
-
-function setCookie(cname, cvalue, exdays) {
-
-    const d = new Date();
-    d.setTime(d.getTime() + (exdays*24*60*60*1000));
-
-    let expires = "expires="+ d.toUTCString();
-    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-  
-}
-  
-function getCookie(cname) {
-  
-    let name = cname + "=";
-    let decodedCookie = decodeURIComponent(document.cookie);
-    let ca = decodedCookie.split(';');
-
-    for(let i = 0; i <ca.length; i++) {
-
-      let c = ca[i];
-
-      while (c.charAt(0) == ' ') {
-        c = c.substring(1);
-      }
-
-      if (c.indexOf(name) == 0) {
-        return c.substring(name.length, c.length);
-      }
-
-    }
-
-    return "";
-  
-}
-  
 function removeFromCart(id) {
-  
+
     const cart = JSON.parse(getCookie("cart"));
-  
+
     const index = cart.findIndex(i => i.id.toLowerCase() === id.toLowerCase());
     if (index > -1) { // only splice array when item is found
       cart.splice(index, 1); // 2nd parameter means remove one item only
     }
-  
+
     successPopup(`Removed ${id} from cart.`)
-  
+
     setCookie("cart", JSON.stringify(cart), (30));
 
     setTimeout(() => {window.location.reload()}, 5000);
 
 }
-  
+
 function checkout() {
 
     let c = getCookie("cart");
 
-    if (!c) return 
+    if (!c) return;
 
-    setCookie("cart", JSON.stringify({}), 0);
+    fetch('/cart', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: (c) // Convert data to JSON string
+    })
+        .then(response => response.json()) // Parse the JSON from the response
+        .then(result => {
+            console.log('Success:', result);
+            // Handle the result
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            // Handle the error
+        });
+
+    // setCookie("cart", JSON.stringify({}), 0);
 
     successPopup("Your items will be delivered to your adddress within 5 business days.");
 
-    setTimeout(() => {window.location.reload()}, 5000);
+    setTimeout(() => {window.location.href = "/"}, 5000);
 
 }
 
-function element(name, className, attributes) {
 
-    const element = document.createElement(name);
-    element.setAttribute("class", className);
-
-    if (attributes) {
-
-        Object.keys(attributes).forEach(attr => {
-            element.setAttribute(attr, attributes[attr]);
-        });
-
-    }
-
-    return element;
-
-}
-
-function appendChildren(element, children) {
-
-    children.forEach(c => {
-        element.appendChild(c);
-    });
-
-}
-
-function truncate(str, n) {
-
-    return (str.length > n) ? str.slice(0, n-1) + '...' : str;
-
-};
-
-function round(num,pre) {
-
-    return Math.ceil(num/pre)*pre;
-
-}

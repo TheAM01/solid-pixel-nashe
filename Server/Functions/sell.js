@@ -1,10 +1,11 @@
 import fs from "fs";
+import db from "../db.js";
 
-function sell(req, res, dir) {
+function sell(req, res) {
 
-    console.log(req.body);
+
     Object.keys(req.body).forEach(k => {
-        if (!req.body[k]) return
+        if (!req.body[k]) return;
     });
 
     req.body.reviews = [];
@@ -16,8 +17,10 @@ function sell(req, res, dir) {
     });
 
     req.body.content = content;
+    req.body.seller = req.session.user.username;
 
-    fs.writeFileSync(`${dir}/Public/Data/Products/${req.body.id}.json`, JSON.stringify(req.body, null, 2));
+    db.collection('products').insertOne(req.body);
+
     return res.redirect(`/products/${req.body.id}`);
 
 }

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="https://images.vexels.com/media/users/3/217793/isolated/preview/0956022a968a707c607256b3131d1f7f-abundant-smoke-icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/style-minor.css">
+    <link rel="stylesheet" href="/style-responsive.css">
+    <script src="/common.js"></script>
+    <title>Saste Nashe - Solid Pixel</title>
+</head>
+<body id="body">
+
+<div class="header_1">
+    <a href="/app" class="header_link">Save more on app</a>
+    <a href="/affiliate" class="header_link">Solid Pixel affiliate</a>
+    <a href="/sell" class="header_link">Become a seller</a>
+    <a href="/customer-care" class="header_link">Customer care</a>
+    <a href="/disclaimer" class="header_link">Disclaimer</a>
+    <a href="/login" class="header_link">login</a>
+    <a href="/signup" class="header_link">signup</a>
+</div>
+
+<div class="navigation">
+    <div class="left">
+        <img src="https://images.vexels.com/media/users/3/217793/isolated/preview/0956022a968a707c607256b3131d1f7f-abundant-smoke-icon.png" alt="ico" class="logimg">
+        <a href="/">SasteNashe</a>
+    </div>
+    <div class="right">
+        <a href="/products" class="nav_link">Products</a>
+        <a href="/category" class="nav_link">Category</a>
+        <!--            <a href="/gallery" class="nav_link">Gallery</a>-->
+        <a href="/recently-sold" class="nav_link">Recently sold</a>
+        <a href="/cart" class="nav_link">Cart</a>
+    </div>
+</div>
+
+<div class="search_bar_parent">
+    <input type="text" name="search" id="search" class="search_bar" placeholder="Search.."><button type="submit" class="search_submit">🔍</button>
+</div>
+
+<div class="main">
+
+    <span class="heading center">📈 Recently sold items:</span>
+    <span class="horizontal_rule"></span>
+
+    <div id="recently-sold"></div>
+
+</div>
+
+<div class="footer">
+    <div class="footer_top">SasteNashe by SolidPixel</div>
+    <div class="footer_bottom">
+        <div class="footer_panel">
+            <div class="footer_heading">SolidPixel</div>
+            <a href="/app" class="footer_element">Download app</a>
+            <a href="/affiliate" class="footer_element">Join affiliate</a>
+            <a href="/sell" class="footer_element">Sell your product</a>
+        </div>
+        <div class="footer_panel">
+            <div class="footer_heading">Policies</div>
+            <a href="/policy/cookie" class="footer_element">Cookies</a>
+            <a href="/policy/service" class="footer_element">Service</a>
+            <a href="/policy/content" class="footer_element">Content</a>
+            <a href="/guide/sell" class="footer_element">Selling</a>
+        </div>
+        <div class="footer_panel">
+            <div class="footer_heading">Account</div>
+            <a href="/login" class="footer_element">Login</a>
+            <a href="/signup" class="footer_element">Sign up</a>
+            <a href="/account" class="footer_element">Account</a>
+        </div>
+    </div>
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/script.js"></script>
+<script>
+	const socket = io();
+	getRecentlySold(socket);
+</script>
+
+</body>
+</html>

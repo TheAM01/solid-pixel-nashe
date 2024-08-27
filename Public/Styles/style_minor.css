@@ -14,16 +14,18 @@
 }
 
 .ad_parent::before {
+    box-sizing: border-box;
     content: "ad";
-    border-radius: 10px;
+    /*border-radius: 5px;*/
     display: flex;
-    color: white;
-    translate: 5px 30px;
+    color: gray;
+    translate: 0 calc(100% - 0.5px);
     /* background-color: red; */
-    background-color: black;
+    background-color: #bdbcbc;
     width: fit-content;
-    padding: 5px;
+    padding: 4px;
     aspect-ratio: 1/1;
+    font-size: 0.7em;
 }
 
 .ad_img:hover {
@@ -31,7 +33,7 @@
 }
 
 .ad_img {
-    border-radius: 20px;
+    /*border-radius: 20px;*/
     height: 200px;
     width: 100%;
     align-self: center;
@@ -46,7 +48,7 @@
     flex-direction: column;
     height: 100%;
     background-color: var(--tertiary);
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px;
 }
 
 .main100 {
@@ -119,9 +121,9 @@ hmpr: home_product
     box-shadow: var(--std-shadow);
 }
 
-.home_product_parent:last-child {
-    margin-right: 0;
-}
+/*.home_product_parent:last-child {*/
+/*    margin-right: 0;*/
+/*}*/
 
 .hmpr_thumbnail {
     width: 100%;
@@ -419,16 +421,22 @@ prdt: product_details
 
 .success {
     position: fixed;
-    font-size: 30px;
+    font-size: 18px;
+    padding: 15px;
 
     display: flex;
 
-    background-color: #1d1d1d7a;
+    background-color: var(--secondary);
+    border: 3px solid var(--primary);
     background-image: url("https://www.transparenttextures.com/patterns/black-linen-2.png");
     /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
-    width: 100%;
-    height: 100%;
+    /*width: 100%;*/
+    /*height: 100%;*/
     color: #fff;
+
+    bottom: 20px;
+    right: 20px;
+    margin-bottom: 20px;
 
     align-self: center;
 
@@ -616,6 +624,37 @@ div#categories, div#category, div#cart {
     width: 500px;
     justify-self: center;
     align-self: center;
+}
+
+/*
+
+RECENTLY SOLD
+
+*/
+#recently-sold {
+    flex-direction: column;
+}
+
+.rs_wrapper {
+    width: 100%;
+    border: 2px solid var(--accent);
+    margin: 25px 0;
+    background-color: var(--secondary);
+    padding: 20px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.rs_thumbnail {
+    height: 100px;
+    width: 100px;
+    object-fit: contain;
+    background-color: black;
+}
+
+.rs_name, .rs_qty, .rs_time {
+    color: var(--font-inverted);
+    font-size: 22px;
 }
 
 /* .screen_nav {
