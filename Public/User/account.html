@@ -6,10 +6,10 @@
     <link rel="shortcut icon" href="https://images.vexels.com/media/users/3/217793/isolated/preview/0956022a968a707c607256b3131d1f7f-abundant-smoke-icon.png" type="image/x-icon">
     <link rel="stylesheet" href="/style.css">
     <link rel="stylesheet" href="/style-minor.css">
-    <link rel="stylesheet" href="/style-forms.css">
     <link rel="stylesheet" href="/style-responsive.css">
+    <link rel="stylesheet" href="/style-forms.css">
     <script src="/common.js"></script>
-    <title>Saste Nashe - Solid Pixel</title>
+    <title>Log in - Saste Nashe - Solid Pixel</title>
 </head>
 <body id="body">
 
@@ -31,7 +31,7 @@
     <div class="right">
         <a href="/products" class="nav_link">Products</a>
         <a href="/category" class="nav_link">Category</a>
-        <!--            <a href="/gallery" class="nav_link">Gallery</a>-->
+        <!--        <a href="/gallery" class="nav_link">Gallery</a>-->
         <a href="/recently-sold" class="nav_link">Recently sold</a>
         <a href="/cart" class="nav_link">Cart</a>
     </div>
@@ -43,12 +43,46 @@
         <button type="submit" class="search_submit material-icons-round">search</button>
     </form>
 </div>
+
 <div class="main">
 
-    <span class="heading center">📈 Recently sold items:</span>
+    <span class="heading center">👤 Your account</span>
     <span class="horizontal_rule"></span>
 
-    <div id="recently-sold"></div>
+    <div class="account-info-wrapper">
+
+        <div class="acin_left" id="acin_left">
+
+            <div class="acin_pics">
+                <img src="" alt="" class="acin_banner" id="banner">
+                <img src="" alt="" class="acin_pfp" id="pfp">
+            </div>
+
+            <div class="acin_details">
+
+                <div class="acin_kvp">
+                    <div class="acin_key">Name:</div><div class="acin_value" id="acin_name"></div>
+                </div>
+
+                <div class="acin_kvp">
+                    <div class="acin_key">Email:</div><div class="acin_value" id="acin_email"></div>
+                </div>
+
+                <div class="acin_kvp">
+                    <div class="acin_key">Account level: </div> <div class="acin_value">Basic</div>
+                </div>
+
+                <div class="acin_kvp">
+                    <div class="acin_key">Account age: </div> <div class="acin_value" id="acin_age"></div>
+                </div>
+
+            </div>
+        </div>
+        <div class="acin_right" id="recently-sold">
+<!--            placeholder-->
+        </div>
+
+    </div>
 
 </div>
 
@@ -79,9 +113,11 @@
 
 <script src="/socket.io/socket.io.js"></script>
 <script src="/script.js"></script>
+<script src="/forms.js"></script>
 <script>
 	const socket = io();
-	getRecentlySold(socket);
+    backgroundProcesses();
+	getAccountDetails(socket);
 </script>
 
 </body>

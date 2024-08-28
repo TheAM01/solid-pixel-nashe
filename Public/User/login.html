@@ -38,9 +38,11 @@
 </div>
 
 <div class="search_bar_parent">
-    <input type="text" name="search" id="search" class="search_bar" placeholder="Search.."><button type="submit" class="search_submit">🔍</button>
+    <form id="search_bar_form" action="/search" method="get">
+        <input type="text" name="q" id="search" class="search_bar" placeholder="Search..">
+        <button type="submit" class="search_submit material-icons-round">search</button>
+    </form>
 </div>
-
 <div class="main">
 
     <span class="heading center">👤 Log in</span>
@@ -49,6 +51,7 @@
     <form action="/login" method="post" id="login_form">
         <input type="text" name="username" id="username" class="user_inputs" placeholder="Username" required>
         <input type="password" name="password" id="password" class="user_inputs" placeholder="Password" required>
+        <input type="hidden" name="redirect" id="redirect">
         <input type="submit" value="Log in" class="user_submit" id="submit">
         <a href="/signup" class="refer_to_other_option">Sign up</a>
     </form>
@@ -85,7 +88,8 @@
 <script src="/forms.js"></script>
 <script>
 	const socket = io();
-
+	backgroundProcesses();
+	checkRedirection();
 </script>
 
 </body>

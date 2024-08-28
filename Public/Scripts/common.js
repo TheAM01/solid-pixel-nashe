@@ -4,17 +4,33 @@ function successPopup(message) {
 
 	msg.setAttribute("class", "success");
 	// msg.setAttribute("id", "success_popup");
-	msg.innerText = message;
+	msg.innerHTML = message;
 
 	document.getElementById("body").appendChild(msg);
 
 	setTimeout(() => {
 		Array.from(document.getElementsByClassName("success"))
 			.forEach(popup => {
-				// popup.remove();
+				popup.remove();
 			})
 	}, 3*1000);
 
+}
+
+function calculateAge(milliseconds) {
+	// Number of milliseconds in a year and a day
+	const millisecondsPerYear = 31536000000;
+	const millisecondsPerDay = 86400000;
+
+	// Calculate total years and remaining milliseconds
+	const years = Math.floor(milliseconds / millisecondsPerYear);
+	const remainingMilliseconds = milliseconds % millisecondsPerYear;
+
+	// Calculate days from the remaining milliseconds
+	const days = Math.floor(remainingMilliseconds / millisecondsPerDay);
+
+	// Format the output
+	return `${years} years, ${days} days`;
 }
 
 function setCookie(cname, cvalue, exdays) {

@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/style-minor.css">
     <link rel="stylesheet" href="/style-forms.css">
     <link rel="stylesheet" href="/style-responsive.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Round">
     <script src="/common.js"></script>
     <title>Saste Nashe - Solid Pixel</title>
 </head>
@@ -37,18 +38,23 @@
     </div>
 </div>
 
-<div class="search_bar_parent">
-    <form id="search_bar_form" action="/search" method="get">
-        <input type="text" name="q" id="search" class="search_bar" placeholder="Search..">
-        <button type="submit" class="search_submit material-icons-round">search</button>
-    </form>
-</div>
+<a href="/" class="ad_parent" id="ad_banner">
+    <img src="//cdn.discordapp.com/attachments/1096223696902967397/1136384975340589056/origin_smp_banner.png" alt="" class="ad_img" id="ad_img">
+</a>
+
 <div class="main">
 
-    <span class="heading center">📈 Recently sold items:</span>
+    <form action="search" method="get" class="big_search">
+        <input type="text" name="q" id="search" placeholder="Search.." class="big_search_field">
+        <button type="submit" class="big_search_submit material-icons-round">search</button>
+    </form>
+
+    <span class="heading center">🔎 🔭 Search results:</span>
     <span class="horizontal_rule"></span>
 
-    <div id="recently-sold"></div>
+    <div id="search_results">
+
+    </div>
 
 </div>
 
@@ -78,10 +84,12 @@
 </div>
 
 <script src="/socket.io/socket.io.js"></script>
+<script src="/forms.js"></script>
 <script src="/script.js"></script>
 <script>
 	const socket = io();
-	getRecentlySold(socket);
+	backgroundProcesses(socket);
+	processSearch(socket);
 </script>
 
 </body>

@@ -1,31 +1,41 @@
 function backgroundProcesses() {
-    
+
     // check if mobile;
     // i wish my hands and fingers worked correctly
+
+    const link = element(
+        "link",
+        undefined,
+        {
+            rel: 'stylesheet',
+            href: 'https://fonts.googleapis.com/icon?family=Material+Icons+Round'
+        }
+    );
+    document.head.appendChild(link);
 
 
     if (window.screen.width <= 800) {
 
         const navigation = element("div", "screen_nav");
-        
+
         const home = element("a", "screen_nav_element", {"href": "/products"});
         home.append(
-            element("img", "screen_nav_icon", {"src": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Home-icon.svg/1024px-Home-icon.svg.png"})
+            element("i", "screen_nav_icon material-icons-round", {}, 'home')
         );
 
         const categories = element("a", "screen_nav_element", {"href": "/category"});
         categories.append(
-            element("img", "screen_nav_icon", {"src": "https://pixlok.com/wp-content/uploads/2021/12/Apps-Icon-SVG-93nd.png"})
+            element("i", "screen_nav_icon material-icons-round", null, 'category')
         );
 
         const cart = element("a", "screen_nav_element", {"href": "/cart"});
         cart.append(
-            element("img", "screen_nav_icon", {"src": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Font_Awesome_5_solid_shopping-cart.svg/1152px-Font_Awesome_5_solid_shopping-cart.svg.png"})
+            element("i", "screen_nav_icon material-icons-round", null, 'shopping_cart')
         );
 
         const account = element("a", "screen_nav_element", {"href": "/account"});
         account.append(
-            element("img", "screen_nav_icon", {"src": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Ic_account_circle_48px.svg/1200px-Ic_account_circle_48px.svg.png"})
+            element("i", "screen_nav_icon material-icons-round", null, 'account_circle')
         );
 
         appendChildren(navigation, [
@@ -57,7 +67,7 @@ function homeProducts(socket) {
     socket.emit("home_products");
 
     socket.on("home_products", (data) => {
-        
+
         const categories = [];
 
         data.forEach(product => {
@@ -135,14 +145,14 @@ function productPage(socket) {
 
         const thumbnail = element("img", "prdt_thumbnail", {"src": data.thumbnail});
         
-        const title = element("div", "prdt_title");
+        const title = element("div", "prdt_title", {id: 'prdt_title'});
         title.innerText = data.name;
 
         const price = element("div", "prdt_price");
         price.innerText = `Rs ${data.price}`;
 
         const buttonParent = element("div", "prdt_buy_options prdt_field");
-        let amountField = element("input", "amount_field", {"type": "number", "placeholder": "Amount", "min": "1", "max": "10", "id": "cart_quantity"});
+        let amountField = element("input", "amount_field", {"type": "number", "placeholder": "Amount", "min": "1", "max": "10", "id": "cart_quantity", value: 1});
         let addToCartButton = element("button", "add_to_cart_button", {"onclick": `addToCart(${JSON.stringify(data)})`});
         addToCartButton.innerText = "Add to cart"
 
@@ -294,7 +304,7 @@ function getRecentlySold(socket) {
             const image = element('img', 'rs_thumbnail', {src: product.data.thumbnail});
             const title = element('div', 'rs_name', {}, `Item: ${product.data.name}`);
             const qty = element('div', 'rs_qty', {}, `Quantity: ${product.quantity}`);
-            const time = element('div', 'rs_time', {}, `Time: ${product.timestamp}`);
+            const time = element('div', 'rs_time', {}, `Purchased on: ${product.timestamp}`);
 
             appendChildren(wrapper, [image, title, qty, time]);
 
@@ -338,8 +348,11 @@ function addToCart(item) {
     let cartRaw = getCookie("cart");
     let cart;
     // let item = JSON.parse(i)
+
+    if (document.getElementById("cart_quantity").value < 1 || document.getElementById("cart_quantity").value > 50)
+        return successPopup('Quantity can only be 1-50!');
   
-    let qty = Math.abs(parseInt(document.getElementById("cart_quantity").value)) || 1;
+    let qty = Math.abs(parseInt(document.getElementById("cart_quantity").value));
   
     if (!cartRaw) {
 
@@ -349,7 +362,7 @@ function addToCart(item) {
         price: parseInt(item.price),
         sum: parseInt(item.price)*qty
       }];
-      successPopup(`Successfully added ${qty} ${item.id} to cart!`)
+      successPopup(`Successfully added ${qty} <span class="emphasis">${document.getElementById('prdt_title').innerText}</span> to cart!`)
       return setCookie("cart", JSON.stringify(cart), 30);
 
     }
@@ -373,13 +386,13 @@ function addToCart(item) {
   
     }
   
-    successPopup(`Successfully added ${qty} ${item.id} to cart!`)
+    successPopup(`Successfully added ${qty} <span class="emphasis">${document.getElementById('prdt_title').innerText}</span> to cart!`)
   
     return setCookie("cart", JSON.stringify(cart), 30);
   
 }
 
-function buildCart() {
+function buildCart(socket) {
 
     let cart = getCookie("cart");
     let items, total;
@@ -414,49 +427,53 @@ function buildCart() {
         total += i.sum;
     });
 
-    socket.emit("home_products");
-    socket.on("home_products", (data) => {
+    socket.emit("cart", cart);
+    socket.on("cart", (data) => {
+        for (const item of data.cart) {
 
-        cart.forEach(i => {
-
-            const matchedProduct = data.find(k => k.id === i.id);
-
+            const matchedProduct = item.details;
+                console.log(matchedProduct)
             const parent = element("div", "cart_item_parent");
-    
+
             const thumbnailParent = element("div", "crit_thumbnail_parent");
-    
+
             const thumbnail = element("img", "crit_thumbnail", {"src": matchedProduct.thumbnail});
-    
+
             const rightWrapper = element("div", "crit_right");
-    
+
             const title = element("div", "crit_title crit_cell");
             title.innerText = matchedProduct.name;
-    
+
             const price = element("div", "crit_price crit_cell");
-            price.innerText = `Price: ${i.price}`;
-    
+            price.innerText = `Price: ${item.price}`;
+
             const quantity = element("div", "crit_quantity crit_cell");
-            quantity.innerText = `Quantity: ${i.quantity}`;
-    
+            quantity.innerText = `Quantity: ${item.quantity}`;
+
             const sum = element("div", "crit_sum");
-    
-            const remove = element("button", "remove_from_cart", {"onclick": `removeFromCart('${i.id}')`});
+
+            const remove = element("button", "remove_from_cart", {"onclick": `removeFromCart('${item.id}')`});
             remove.innerText = "Remove from cart"
-    
+
             sum.append(remove);
-            sum.append(`Total: Rs: ${i.sum}`);
-    
+            sum.append(`Total: Rs: ${item.sum}`);
+
             appendChildren(rightWrapper, [title, price, quantity, sum]);
             appendChildren(thumbnailParent, [thumbnail]);
             appendChildren(parent, [thumbnailParent, rightWrapper]);
             appendChildren(document.getElementById("cart"), [parent]);
-        });
+        }
 
         const totalDiv = element("div", "cart_total");
         totalDiv.innerText = `Your cart total is: Rs ${total}/-`;
 
-        const checkout = element('button', "checkout_button", {"onclick": "checkout()"});
-        checkout.innerText = "Check out";
+        const checkout = element('button', "checkout_button", {"onclick": ""}, 'Check out');
+
+        if (data.authenticated) {
+            checkout.setAttribute('onclick', 'checkout()');
+        } else {
+            checkout.setAttribute('onclick', 'window.location.href = \'/login?login-first=true&redirect-to=cart\'');
+        }
 
         document.getElementById("cart").appendChild(totalDiv);
         document.getElementById("cart").appendChild(checkout);
@@ -524,4 +541,48 @@ function checkout() {
 
 }
 
+function getAccountDetails(socket) {
+    socket.emit('account_details');
 
+
+    socket.on('account_details', (user) => {
+
+        if (!user)
+            return window.location.href = "/login?login-first=true&redirect-to=account";
+
+
+        document.getElementById('acin_name').innerText = `${user.profile.firstName} ${user.profile.lastName}`;
+        document.getElementById('acin_email').innerText = user.profile.email;
+        document.getElementById('acin_age').innerText = calculateAge(Date.now()-user.profile.createdTimestamp);
+        document.getElementById('pfp').setAttribute('src', user.profile.profileImage);
+        document.getElementById('banner').setAttribute('src', user.profile.profileBanner);
+
+        setTimeout(() => {
+
+            let acinChildHeight = document.getElementById('acin_left').offsetHeight;
+
+            document.getElementById('recently-sold')
+                .style.height = acinChildHeight + 'px';
+
+            for (const product of user.recentPurchases) {
+
+                const wrapper = element('div', 'rsp_wrapper');
+                const image = element('img', 'rs_thumbnail', {src: product.data.thumbnail});
+                const fields = element('div', 'rsp_fields_wrapper');
+
+                const title = element('div', 'rsp_fields', {}, `Item: ${product.data.name}`);
+                const qty = element('div', 'rsp_fields', {}, `Quantity: ${product.quantity}`);
+                const time = element('div', 'rsp_fields', {}, `Purchased on: ${product.timestamp}`);
+
+                appendChildren(fields, [title, qty, time])
+
+                appendChildren(wrapper, [image, fields]);
+                document.getElementById('recently-sold').appendChild(wrapper);
+
+            }
+        }, 1000);
+
+
+    });
+
+}

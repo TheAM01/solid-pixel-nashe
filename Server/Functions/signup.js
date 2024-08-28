@@ -25,6 +25,9 @@ export default async function signup(req, res) {
 		firstName: first_name,
 		lastName: last_name,
 		username: username,
+		profileImage: '//placehold.co/200x200/',
+		profileBanner: '//placehold.co/500x200',
+		createdTimestamp: Date.now(),
 		email: email,
 		password: bcrypt.hashSync(password, 8),
 	}

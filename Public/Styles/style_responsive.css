@@ -42,6 +42,7 @@
         padding: 5px;
         justify-content: center;
         align-items: center;
+        text-decoration: none;
     }
     
     .screen_nav_icon {
@@ -49,6 +50,8 @@
         width: 30px;
         object-fit: contain;
         filter: invert();
+        font-size: 30px !important;
+        color: var(--primary);
     }
     
 }
@@ -61,7 +64,7 @@
     }
     
     .main {
-        width: auto;
+        width: 100%;
         padding: 20px;
     }
 
@@ -111,5 +114,10 @@
     .prdt_description {
         font-size: 16px;
     }
+
+    .footer_bottom {
+        flex-direction: column;
+    }
+
 
 }

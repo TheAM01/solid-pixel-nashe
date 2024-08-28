@@ -6,6 +6,8 @@ import db from "./db.js";
 
 function createRoutes(app, dir) {
 
+    // HOME
+
     app.get('/', (req, res) => {
         console.log(req.session.user, req.session.authenticated);
         res.sendFile(dir + "/Public/index.html");
@@ -19,6 +21,9 @@ function createRoutes(app, dir) {
         res.sendFile(dir + "/Public/index.html")
     });
 
+
+    // STATICS
+
     app.get('/disclaimer', (req, res) => {
         res.sendFile(dir + "/Public/Static/disclaimer.html")
     });
@@ -30,6 +35,13 @@ function createRoutes(app, dir) {
     app.get('/affiliate', (req, res) => {
         res.sendFile(dir + "/Public/Static/affiliate.html");
     });
+
+
+    // DYNAMICS
+
+    app.get('/search', (req, res) => {
+        res.sendFile(dir + '/Public/Dynamic/search.html');
+    })
 
     app.get('/products/:product', (req, res) => {
         res.sendFile(dir + "/Public/Dynamic/product.html")
@@ -49,10 +61,10 @@ function createRoutes(app, dir) {
 
     app.get('/sell', (req, res) => {
         if (!req.session.authenticated)
-            return res.redirect('/login?login-first=true');
+            return res.redirect('/login?login-first=true&redirect-to=sell');
 
         if (!req.session.user)
-            return res.redirect('/login?login-first=true');
+            return res.redirect('/login?login-first=true&redirect-to=sell');
 
         res.sendFile(dir + "/Public/Dynamic/sell.html")
     });
@@ -61,9 +73,14 @@ function createRoutes(app, dir) {
         res.sendFile(dir + "/Public/Dynamic/recently-sold.html")
     });
 
-    // user
+
+    // USER
 
     app.get('/login', (req, res) => {
+
+        if (!!req.session.authenticated && !!req.session.user)
+            return res.redirect('/?already-logged-in=true');
+
         res.sendFile(dir + "/Public/User/login.html");
     });
 
@@ -71,7 +88,15 @@ function createRoutes(app, dir) {
         res.sendFile(dir + "/Public/User/signup.html");
     })
 
-    // statics
+    app.get('/account', (req, res) => {
+        if (!req.session.authenticated || !req.session.user)
+            return res.redirect('/login?login-first=true&redirect-to=account');
+
+        res.sendFile(dir + '/Public/User/account.html');
+    });
+
+
+    // statics CSS & JS
 
     app.get('/style.css', (req, res) => {
         res.sendFile(dir + "/Public/Styles/style.css")
@@ -109,7 +134,8 @@ function createRoutes(app, dir) {
         res.sendFile(dir + "/Public/Scripts/forms.js")
     });
 
-    // post routes
+
+    // POST ROUTES
 
     app.post('/sell', (req, res) => {
         sell(req, res)
@@ -124,15 +150,9 @@ function createRoutes(app, dir) {
     });
 
     app.post('/cart', (req, res) => {
-        res.clearCookie('cart', {path: '/'});
 
-        req.body.forEach(item => {
-            item.timestamp = (new Date()).toISOString().split('T')[0];
-        });
+    });
 
-        db.collection('transactions').insertMany(req.body);
-        res.redirect('/');
-    })
 
     // 404
 

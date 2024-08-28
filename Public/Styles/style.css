@@ -258,3 +258,28 @@ button:hover {
 .footer_element:hover {
     color: var(--accent);
 }
+
+.big_search {
+    width: 100%;
+    flex-direction: row;
+    background-color: red;
+    margin-bottom: 20px;
+}
+
+.big_search_field {
+    flex-grow: 1;
+    padding: 10px;
+    border: none;
+    box-sizing: border-box;
+}
+
+.big_search_submit {
+    box-sizing: border-box;
+    display: flex;
+    height: 100%;
+    background-color: var(--primary);
+    border: none;
+    /*aspect-ratio: 1/1;*/
+    color: var(--font-inverted);
+    padding: 7px;
+}

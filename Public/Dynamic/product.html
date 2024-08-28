@@ -38,7 +38,10 @@
     </div>
 
     <div class="search_bar_parent">
-        <input type="text" name="search" id="search" class="search_bar" placeholder="Search.."><button type="submit" class="search_submit">🔍</button>
+        <form id="search_bar_form" action="/search" method="get">
+            <input type="text" name="q" id="search" class="search_bar" placeholder="Search..">
+            <button type="submit" class="search_submit material-icons-round">search</button>
+        </form>
     </div>
 
     <!-- <a href="/" class="ad_parent" id="ad01">

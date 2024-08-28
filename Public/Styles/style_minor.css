@@ -76,6 +76,13 @@
     justify-content: center;
 }
 
+#search_bar_form {
+    /*display: flex;*/
+    flex-direction: row;
+    margin: 0;
+    padding: 0;
+}
+
 .search_bar {
     width: 500px;
     border: none;
@@ -86,6 +93,8 @@
     aspect-ratio: 1/1;
     border: none;
     background-color: var(--primary);
+    height: 100%;
+    color: var(--font-inverted);
 }
 
 /* 
@@ -263,13 +272,14 @@ prdt: product_details
 }
 
 .amount_field {
+
     box-sizing: border-box;
     max-width: 200px;
     width: 200px !important;
     border: 2px solid var(--accent);
     background: none;
     padding: 10px;
-    color: var(--font);
+    color: var(--font-inverted);
     border-radius: 5px;
 }
 
@@ -424,7 +434,7 @@ prdt: product_details
     font-size: 18px;
     padding: 15px;
 
-    display: flex;
+    /*display: inline;*/
 
     background-color: var(--secondary);
     border: 3px solid var(--primary);
@@ -654,9 +664,159 @@ RECENTLY SOLD
 
 .rs_name, .rs_qty, .rs_time {
     color: var(--font-inverted);
-    font-size: 22px;
+    font-size: 19px;
+}
+
+.rsp_wrapper {
+    width: 100%;
+    border: 2px solid var(--accent);
+    margin: 25px 0;
+    background-color: var(--secondary);
+    padding: 10px;
+    align-items: center;
+}
+
+.rsp_fields_wrapper {
+    margin-left: 10px;
+    flex-direction: column;
+}
+
+.rsp_fields {
+    color: var(--font-inverted);
+    font-size: 17px;
+    margin: 10px 0;
 }
 
 /* .screen_nav {
     display: none;
 } */
+
+/*
+
+ACCOUNT INFO
+
+*/
+
+.account-info-wrapper {
+    flex-direction: row;
+    padding: 10px;
+    justify-content: space-evenly;
+}
+
+.account-info-wrapper > div {
+    background-image: url("https://www.transparenttextures.com/patterns/black-felt.png");
+    box-shadow: var(--std-shadow);
+    background-color: var(--tertiary);
+    flex-direction: column;
+    padding: 20px;
+    width: 45%;
+}
+
+.acin_right {
+    overflow-y: scroll;
+    height: initial;
+}
+
+.acin_pics {
+    height: 50%;
+    flex-direction: column;
+    /*border: 2px dotted red;*/
+    align-items: center;
+    width: 100%;
+}
+
+.acin_banner {
+    box-shadow: var(--std-shadow);
+    width: 100%;
+    /*border: 1px solid var(--secondary);*/
+}
+
+.acin_pfp {
+    /*border: 1px solid var(--secondary);*/
+    box-shadow: var(--std-shadow);
+    width: 40%;
+    border-radius: 50%;
+    transform: translateY(-50%);
+}
+
+.acin_details {
+    margin-top: 50px;
+    flex-direction: column;
+    font-size: 18px;
+    color: var(--font);
+}
+
+.acin_kvp {
+    margin: 10px 0;
+}
+
+.acin_key {
+    font-weight: 600;
+    margin-right: 0.5em;
+}
+
+/*
+
+SRRS sEArCH rEsULTS
+
+*/
+
+#search_results {
+    flex-direction: column;
+}
+
+.srrs_wrapper {
+    padding: 10px;
+    text-decoration: none;
+    color: var(--font);
+    display: flex;
+    flex-direction: row;
+    border-top: 2px solid var(--primary);
+    border-left: 2px solid transparent;
+    border-right: 2px solid transparent;
+    align-items: center;
+    /*border-right: 2px solid var(--primary);*/
+    /*border-left: 2px solid var(--primary);*/
+    transition: 0.2s;
+}
+
+.srrs_wrapper:last-of-type {
+    border-bottom: 2px solid var(--primary);
+}
+
+.srrs_wrapper:hover {
+    background-color: var(--secondary);
+    color: var(--font-inverted);
+    border-left: 2px solid var(--primary);
+    border-right: 2px solid var(--primary);
+}
+
+.srrs_thumbnail {
+    /*background-color: var(--primary);*/
+    width: 100px;
+    aspect-ratio: 1/1;
+    object-fit: contain;
+    background-color: var(--secondary);
+    border-radius: 5px;
+}
+
+.srrs_details {
+    flex-direction: column;
+    margin-left: 20px;
+    justify-content: center;
+}
+
+.srrs_name {
+    font-size: 19px;
+    margin: 10px 0;
+}
+
+.srrs_price {
+    color: red;
+    margin: 10px 0;
+}
+
+.srrs_price .strikethrough {
+    color: var(--accent);
+    margin-right: 0.5em;
+}

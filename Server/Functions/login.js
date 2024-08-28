@@ -2,7 +2,6 @@ import db from "../db.js";
 import bcrypt from "bcryptjs";
 
 export default async function login(req, res) {
-
 	if (req.session.authenticated)
 		return res.redirect('/?already-logged-in=true');
 
@@ -21,6 +20,6 @@ export default async function login(req, res) {
 
 	req.session.authenticated = true;
 	req.session.user = user;
-	res.redirect('/?logged-in=true');
+	res.redirect(`/${req.body.redirect ? req.body.redirect : ""}?logged-in=true`);
 
 }

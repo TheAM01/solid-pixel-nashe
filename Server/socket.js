@@ -76,6 +76,37 @@ function socketHandler(socket, io, dir) {
         io.to(socket.id).emit('recents', recents);
     });
 
+    socket.on('account_details', async () => {
+        const recentPurchases = await db.collection('transactions').find({user: socket.request.session.user.username}).toArray();
+        recentPurchases.reverse();
+        for (const recent of recentPurchases) {
+            recent.data = await db.collection('products').findOne({id: recent.id});
+        }
+        io.to(socket.id).emit('account_details', {profile: socket.request.session.user, recentPurchases});
+    });
+
+    socket.on('check_authentication', () => {
+        console.log(!!socket.request.session.authenticated)
+        io.to(socket.id).emit('check_authentication', !!socket.request.session.authenticated);
+    });
+
+    socket.on('cart', async (cart) => {
+        for (const item of cart) {
+            const matched = await db.collection('products').findOne({id: item.id});
+            if (!matched) return cart.splice(cart.indexOf(item)-1, 1);
+            item.details = matched;
+        }
+        io.to(socket.id).emit('cart', {authenticated: !!socket.request.session.authenticated, cart});
+    });
+
+    socket.on('search_results', async searchQuery => {
+        const collection = db.collection('products');
+
+        const results = await collection.find({name: {$regex: new RegExp(searchQuery, 'i')}}).toArray();
+        io.to(socket.id).emit('search_results', {authenticated: !!socket.request.session.authenticated, results});
+
+    });
+
 }
 
 function sorter(a, b) {
