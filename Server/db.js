@@ -1,4 +1,5 @@
 import {MongoClient, ServerApiVersion} from "mongodb";
+import "dotenv/config";
 
 const uri = `mongodb+srv://saste-nashe-main:${process.env.MONGO_PASSWORD}@saste-nashe-db.xlhdm.mongodb.net/?retryWrites=true&w=majority&appName=saste-nashe-db`;
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version

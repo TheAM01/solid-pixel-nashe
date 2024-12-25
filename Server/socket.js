@@ -23,7 +23,7 @@ function socketHandler(socket, io, dir) {
             .findOne({id: pr.toLowerCase()});
 
         if (!product) return io.to(socket.id).emit("product", 404);
-        io.to(socket.id).emit("product", product);
+        io.to(socket.id).emit("product", {data: product, authenticated: !!socket.request.session.authenticated});
 
     });
 

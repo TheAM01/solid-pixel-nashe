@@ -366,18 +366,31 @@ prdt: product_details
 }
   
 .prdt_review_top {
+    justify-content: space-between;
     flex-direction: row;
     font-size: 20px;
     margin-bottom: 10px;
 }
   
 .prdt_review_author {
+    padding: 5px 0;
     color: var(--accent) !important;
     margin-right: 10px;
+    align-items: center;
+}
+
+.prdt_verified {
+    align-items: center;
+    color: #ff2d2d;
+    display: flex;
+    margin-left: 10px;
+    text-shadow: 0 0 20px #ff7676;
 }
   
 .prdt_review_stars {
     color: var(--accent);
+    align-items: center;
+    font-size: 0.8em;
 }
   
 .prdt_review_content {

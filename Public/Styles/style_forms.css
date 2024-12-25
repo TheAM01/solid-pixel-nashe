@@ -20,7 +20,7 @@ input[type="submit"]:hover {
     border: 2px solid var(--secondary);
 }
 
-textarea:focus, input:focus{
+textarea:focus, input:focus, select{
     outline: none;
 }
 
@@ -73,4 +73,42 @@ textarea:focus, input:focus{
 
 .refer_to_other_option {
     color: var(--secondary);
+}
+
+.review_form {
+    color: var(--font-inverted);
+    flex-direction: row;
+    align-items: center;
+    height: 100%;
+    /*border: 1px dotted red;*/
+    line-height: normal;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.review_form > * {
+    /*background-color: red;*/
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    height: 100% !important;
+    padding: 10px;
+    font-size: 1em;
+}
+
+.submit_review {
+/*    the input*/
+
+}
+
+.stars_selection_before {
+/*    the div*/
+}
+
+.stars_selection {
+    border: 1px solid var(--accent);
+    /*the select*/
+    border-radius: 0;
+    display: flex;
+    height: 100% !important;
 }

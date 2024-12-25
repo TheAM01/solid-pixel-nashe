@@ -1,8 +1,7 @@
-function backgroundProcesses() {
+const existingRel = document.getElementsByTagName('link');
+console.log(existingRel);
 
-    // check if mobile;
-    // i wish my hands and fingers worked correctly
-
+if (!Array.from(existingRel).find(e => e.href === 'https://fonts.googleapis.com/icon?family=Material+Icons+Round')) {
     const link = element(
         "link",
         undefined,
@@ -12,8 +11,11 @@ function backgroundProcesses() {
         }
     );
     document.head.appendChild(link);
+}
 
+function backgroundProcesses() {
 
+    // check if mobile;
     if (window.screen.width <= 800) {
 
         const navigation = element("div", "screen_nav");
@@ -132,53 +134,37 @@ function productPage(socket) {
 
     socket.emit("product", (pr));
 
-    socket.on("product", (data) => {
+    socket.on("product", (response) => {
+        const data = response.data;
 
         if (data === 404) return window.location.replace("/*")
 
-        const backButton = element("button", "back_button", {"onclick": "history.back()"});
-        backButton.innerText = "⬅ Go back";
-
+        const backButton = element("button", "back_button", {"onclick": "history.back()"}, "⬅ Go back");
         const parent = element("div", "product_details_parent");
 
         const thumbnailParent = element("div", "prdt_thumbnail_parent");
-
         const thumbnail = element("img", "prdt_thumbnail", {"src": data.thumbnail});
-        
-        const title = element("div", "prdt_title", {id: 'prdt_title'});
-        title.innerText = data.name;
 
-        const price = element("div", "prdt_price");
-        price.innerText = `Rs ${data.price}`;
+        const title = element("div", "prdt_title", {id: 'prdt_title'}, data.name);
+        const price = element("div", "prdt_price", null, `Rs ${data.price}`);
 
         const buttonParent = element("div", "prdt_buy_options prdt_field");
         let amountField = element("input", "amount_field", {"type": "number", "placeholder": "Amount", "min": "1", "max": "10", "id": "cart_quantity", value: 1});
-        let addToCartButton = element("button", "add_to_cart_button", {"onclick": `addToCart(${JSON.stringify(data)})`});
-        addToCartButton.innerText = "Add to cart"
+        let addToCartButton = element("button", "add_to_cart_button", {"onclick": `addToCart(${JSON.stringify(data)})`}, "Add to cart");
 
         appendChildren(buttonParent, [amountField, addToCartButton]);
 
-        const description = element("div", "prdt_description prdt_field");
-        description.innerText = data.description;
-
-        const gallery = element("a", "prdt_gallery prdt_field", {"href": `/gallery/${data.id}`});
-        gallery.innerText = `Visit ${data.name} gallery ↗`
-
+        const description = element("div", "prdt_description prdt_field", null, data.description);
+        const gallery = element("a", "prdt_gallery prdt_field", {"href": `/gallery/${data.id}`}, `Visit ${data.name} gallery ↗`);
         const category = element("a", "prdt_category prdt_field");
-        const categoryCategory = element("a", "prdt_category_link", {"href": `/category/${data.category.replaceAll(" ", "-")}`})
-        categoryCategory.innerText = `${data.category} ↗`;
+        const categoryCategory = element("a", "prdt_category_link", {"href": `/category/${data.category.replaceAll(" ", "-")}`}, `${data.category} ↗`);
 
         category.append("Category:")
         category.appendChild(categoryCategory)
 
-        const content = element("div", "prdt_content prdt_field");
-        content.innerText = `Content: ${data.content.join(", ")}`
-
+        const content = element("div", "prdt_content prdt_field", null, `Content: ${data.content.join(", ")}`);
         const reviewsParent = element("div", "prdt_reviews_parent");
-
-        const reviewHead = element("span", "heading invert");
-        reviewHead.innerText = "Reviews: "
-        reviewHead.style.margin = "10px 0 10px 0"
+        const reviewHead = element("span", "heading invert", {style: "margin: 10px 0"}, "Reviews: ");
 
         const reviews = []
 
@@ -186,17 +172,18 @@ function productPage(socket) {
         data.reviews.forEach(r => {
 
             const reviewParent = element('div', 'prdt_review_parent');
-
             const reviewTop = element('div', 'prdt_review_top');
+            const reviewAuthor = element('div', 'prdt_review_author', null, r.author);
+            const reviewStars = element('div', 'prdt_review_stars', null, `[${"⭐".repeat(r.stars)}]`);
+            const reviewContent = element('div', 'prdt_review_content', null, r.content);
 
-            const reviewAuthor = element('div', 'prdt_review_author');
-            reviewAuthor.innerText = r.author;
+            if (!!r.authorUsername) {
+                reviewAuthor.innerText = '';
+                const authorName = element('div', 'prdt_real_review_author', null, r.author);
+                const verificationCheckMark = element('i', 'material-icons-round prdt_verified', null, 'verified')
+                appendChildren(reviewAuthor, [authorName, verificationCheckMark])
+            }
 
-            const reviewStars = element('div', 'prdt_review_stars');
-            reviewStars.innerText = "⭐".repeat(parseInt(r.stars));
-
-            const reviewContent = element('div', 'prdt_review_content');
-            reviewContent.innerText = r.content;
 
             appendChildren(reviewTop, [
                 reviewAuthor,
@@ -215,47 +202,30 @@ function productPage(socket) {
            
         });
 
-        const addReview = element("input", "add_review_input", {"type": "text", "id": "add_review_field", "placeholder": "Add your own review"});
+        const addReview = element("input", "add_review_input", {"type": "text", "id": "add_review_field", name: 'content', "placeholder": "Add your own review", required: true});
+        const sh = element("div", "stars_selection_before", null, "⭐");
+        const stars = element("select", "stars_selection", {"name": "stars", "id": "add_review_stars", required: true});
 
-        const sh = element("div", "stars_selection_before");
-        sh.innerText = "⭐";
+        let starsCollection = [];
+        for (let i = 0; i < 5; i++) {
+            const e = element("option", "s", {value: (i+1).toString()}, (i+1).toString());
+            if (i === 4)
+                e.selected = true;
+            starsCollection.push(e);
+        }
 
+        appendChildren(stars, starsCollection);
 
-        const stars = element("select", "stars_selection", {"name": "stars", "id": "add_review_stars"});
+        const submitReview = element("button", "submit_review", {"type": "submit", "id": "submit_review"}, "Submit");
 
-        let s1 = element("option", "s", {"value": "1"});
-        s1.innerText = "1";
+        let reviewForm = element("form", "review_form", {action: `/review/${data.id}`, method: "POST"});
+        appendChildren(reviewForm, [sh, stars, addReview, submitReview]);
 
-        let s2 = element("option", "s", {"value": "2"});
-        s2.innerText = "2";
+        if (!response.authenticated) {
+            reviewForm = element('div', 'review_form', {}, 'Login first to write a review!')
+        }
 
-        let s3 = element("option", "s", {"value": "3"});
-        s3.innerText = "3";
-
-        let s4 = element("option", "s", {"value": "4"});
-        s4.innerText = "4";
-
-        let s5 = element("option", "s", {"value": "5", "selected": "true"});
-        s5.innerText = "5";
-
-
-        appendChildren(stars, [
-            s1,
-            s2,
-            s3,
-            s4,
-            s5
-        ]);
-        
-
-        const submitReview = element("button", "submit_review", {"onclick": "submitReview()", "id": "submit_review"});
-        submitReview.innerText = "Submit";
-
-
-        const reviewPseudoForm = element("div", "review_form");
-        appendChildren(reviewPseudoForm, [sh, stars, addReview, submitReview]);
-
-        reviews.push(reviewPseudoForm)
+        reviews.push(reviewForm)
 
         const author = element("a", "prdt_field prdt_author prdt_gallery", {"href": `/u/${data.seller || "admin"}`});
         author.innerText = `Seller: ${data.seller || "Admin"}`
@@ -283,7 +253,7 @@ function productPage(socket) {
 
         appendChildren(document.getElementById("main"), [parent])
 
-        document.title = `${data.name} - SasteNashe - Solid Pixel`
+        document.title = `${data.name} - SasteNashe`
 
     })
 }
@@ -550,7 +520,7 @@ function getAccountDetails(socket) {
         if (!user)
             return window.location.href = "/login?login-first=true&redirect-to=account";
 
-
+        document.title = `${user.profile.firstName} ${user.profile.lastName} - Saste Nashe`
         document.getElementById('acin_name').innerText = `${user.profile.firstName} ${user.profile.lastName}`;
         document.getElementById('acin_email').innerText = user.profile.email;
         document.getElementById('acin_age').innerText = calculateAge(Date.now()-user.profile.createdTimestamp);

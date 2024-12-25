@@ -126,6 +126,11 @@ body div {
     background-color: var(--accent);
 }
 
+span.stray {
+    font-size: 18px;
+    padding: 10px;
+}
+
 span.heading {
     font-size: 20px;
 }

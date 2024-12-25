@@ -20,6 +20,8 @@ function getCategory(socket) {
 	const urx = new URL(window.location.href);
 	const pr = (urx.pathname.split('/')[2]);
 
+	document.title = `${capitalizeFirstLetter(pr.replaceAll('-', ' '))} (category) - Saste Nashe`;
+
 	socket.emit("get_category", pr.toLowerCase().replaceAll("-", " "));
 
 	socket.on("get_category", (data) => {

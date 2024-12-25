@@ -3,6 +3,7 @@ import bcrypt from "bcryptjs";
 import signup from "./Functions/signup.js";
 import login from "./Functions/login.js";
 import db from "./db.js";
+import cart from "./Functions/cart.js";
 
 function createRoutes(app, dir) {
 
@@ -79,7 +80,7 @@ function createRoutes(app, dir) {
     app.get('/login', (req, res) => {
 
         if (!!req.session.authenticated && !!req.session.user)
-            return res.redirect('/?already-logged-in=true');
+            return res.redirect(`/${req.query['redirect-to'] ? req.query['redirect-to'] : ""}?already-logged-in=true`);
 
         res.sendFile(dir + "/Public/User/login.html");
     });
@@ -149,9 +150,39 @@ function createRoutes(app, dir) {
         await signup(req, res);
     });
 
-    app.post('/cart', (req, res) => {
-
+    app.post('/cart', async (req, res) => {
+        await cart(req, res);
     });
+
+    app.post('/review/:productName', async (req, res) => {
+
+        const product = req.params.productName;
+
+        if (!req.session.authenticated || !req.session.user) {
+            return res.redirect(`/login?login-first=true&redirect-to=products%2F${product}`);
+        }
+
+        const author = req.session.user;
+        const {stars, content} = req.body;
+
+        if (!stars || !author || !content)
+            return res.redirect(`/products/${product}?invalid-data=true`);
+
+        const update = {
+            $push: {
+                reviews: {
+                    author: `${author.firstName} ${author.lastName}`,
+                    authorUsername: author.username,
+                    content: content,
+                    stars: stars,
+                }
+            }
+        }
+
+        await db.collection('products').updateOne({id: product}, update)
+
+        return res.redirect(`/products/${product}?success=true`);
+    })
 
 
     // 404

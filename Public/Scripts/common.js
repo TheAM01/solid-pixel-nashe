@@ -101,3 +101,7 @@ function truncate(str, n) {
 function round(num,pre) {
 	return Math.ceil(num/pre)*pre;
 }
+
+function capitalizeFirstLetter(string) {
+	return string.charAt(0).toUpperCase() + string.slice(1);
+}

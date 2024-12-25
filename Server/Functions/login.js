@@ -3,7 +3,7 @@ import bcrypt from "bcryptjs";
 
 export default async function login(req, res) {
 	if (req.session.authenticated)
-		return res.redirect('/?already-logged-in=true');
+		return res.redirect(`/${req.body.redirect ? req.body.redirect : ""}?already-logged-in=true`);
 
 	const {password} = req.body;
 	const username = req.body.username.toLowerCase();
